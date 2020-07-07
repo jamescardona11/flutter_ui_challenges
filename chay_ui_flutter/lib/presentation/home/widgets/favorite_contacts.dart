@@ -1,4 +1,5 @@
 import 'package:chay_ui_flutter/models/user_model.dart';
+import 'package:chay_ui_flutter/presentation/widgets/circle_avatar_app.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteContacts extends StatelessWidget {
@@ -44,17 +45,9 @@ class FavoriteContacts extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage(favorite[index].imageUrl),
-                      backgroundColor: Theme.of(context).accentColor,
-                      child: favorite[index].imageUrl.isNotEmpty
-                          ? null
-                          : Text(
-                              favorite[index].firstLetters,
-                              style: TextStyle(
-                                  fontSize: 16, color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold),
-                            ),
+                    CircleAvatarApp(
+                      imageUrl: favorite[index].imageUrl,
+                      nameLetter: favorite[index].firstLetters,
                     ),
                     SizedBox(height: 6),
                     Text(
