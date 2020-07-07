@@ -1,4 +1,5 @@
 import 'package:chay_ui_flutter/models/user_model.dart';
+import 'package:chay_ui_flutter/presentation/chat/chat_page.dart';
 import 'package:chay_ui_flutter/presentation/widgets/circle_avatar_app.dart';
 import 'package:flutter/material.dart';
 
@@ -41,20 +42,28 @@ class FavoriteContacts extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: favorite.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    CircleAvatarApp(
-                      imageUrl: favorite[index].imageUrl,
-                      nameLetter: favorite[index].firstLetters,
-                    ),
-                    SizedBox(height: 6),
-                    Text(
-                      favorite[index].name,
-                      style: TextStyle(fontSize: 16, color: Colors.blueGrey, fontWeight: FontWeight.w600),
-                    ),
-                  ],
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChatPage(user: favorite[index])),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      CircleAvatarApp(
+                        imageUrl: favorite[index].imageUrl,
+                        nameLetter: favorite[index].firstLetters,
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        favorite[index].name,
+                        style: TextStyle(fontSize: 16, color: Colors.blueGrey, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
