@@ -14,13 +14,6 @@ class MockData {
   static List<UserModel> favorites = [sam, steven, olivia, john, greg];
   static List<MessageModel> chats = [
     MessageModel(
-      sender: james,
-      time: '5:30 PM',
-      text: 'Hey, how\'s it going? What did you do today?',
-      isLiked: false,
-      unread: true,
-    ),
-    MessageModel(
       sender: olivia,
       time: '4:30 PM',
       text: 'Hey, how\'s it going? What did you do today?',
@@ -33,6 +26,13 @@ class MockData {
       text: 'Hey, how\'s it going? What did you do today?',
       isLiked: false,
       unread: false,
+    ),
+    MessageModel(
+      sender: james,
+      time: '5:30 PM',
+      text: 'Hey, how\'s it going? What did you do today?',
+      isLiked: false,
+      unread: true,
     ),
     MessageModel(
       sender: sophia,
