@@ -1,4 +1,5 @@
 import 'package:chay_ui_flutter/mock_data.dart';
+import 'package:chay_ui_flutter/presentation/home/widgets/recent_chats.dart';
 import 'package:chay_ui_flutter/presentation/home/widgets/category_selector.dart';
 import 'package:chay_ui_flutter/presentation/home/widgets/favorite_contacts.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,19 @@ class HomePage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  FavoriteContacts(
-                    favorite: MockData().favorites,
+                  FavoriteContacts(favorite: MockData.favorites),
+                  Expanded(
+                    child: Container(
+                      height: 300.0,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
+                      ),
+                      child: RecentChats(recentChats: MockData.chats),
+                    ),
                   ),
                 ],
               ),
