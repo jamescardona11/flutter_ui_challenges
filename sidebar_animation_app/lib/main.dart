@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         primaryColor: Colors.white,
-
       ),
-      home: SideBarLayout();
+      home: SideBarLayout(),
+    );
   }
 }

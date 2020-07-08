@@ -5,7 +5,7 @@ class HomePage extends StatelessWidget {
 
   const HomePage({
     Key key,
-    this.text,
+    @required this.text,
   }) : super(key: key);
 
   @override
