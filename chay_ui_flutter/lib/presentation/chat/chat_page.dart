@@ -39,36 +39,41 @@ class _ChatPageState extends State<ChatPage> {
         ],
         elevation: 0.0,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(top: 15),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                child: ListView.builder(
-                  reverse: true,
-                  padding: EdgeInsets.only(top: 15.0),
-                  itemCount: mockMessages.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _BuildMessageItem(message: mockMessages[index]);
-                  },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                  child: ListView.builder(
+                    reverse: true,
+                    padding: EdgeInsets.only(top: 15.0),
+                    itemCount: mockMessages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _BuildMessageItem(message: mockMessages[index]);
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-          _BuildSendMessageBar(),
-        ],
+            _BuildSendMessageBar(),
+          ],
+        ),
       ),
     );
   }
@@ -77,7 +82,40 @@ class _ChatPageState extends State<ChatPage> {
 class _BuildSendMessageBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      height: 70,
+      color: Colors.white,
+      child: Row(
+        children: [
+          IconButton(
+            icon: Icon(
+              Icons.photo,
+              size: 25,
+              color: Theme.of(context).primaryColor,
+            ),
+            onPressed: () {},
+          ),
+          Expanded(
+            child: TextField(
+              textCapitalization: TextCapitalization.sentences,
+              decoration: InputDecoration.collapsed(
+                hintText: 'Send a message',
+              ),
+              onChanged: (value) {},
+            ),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.send,
+              size: 25,
+              color: Theme.of(context).primaryColor,
+            ),
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
   }
 }
 
