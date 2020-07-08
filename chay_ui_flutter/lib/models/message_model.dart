@@ -4,10 +4,10 @@ class MessageModel {
   final UserModel sender;
   final String time;
   final String text;
-  final bool isLiked;
+  bool isLiked;
   final bool unread;
 
-  const MessageModel({
+  MessageModel({
     this.sender,
     this.time,
     this.text,
