@@ -1,7 +1,7 @@
-import 'package:chay_ui_flutter/mock_data.dart';
-import 'package:chay_ui_flutter/presentation/home/widgets/recent_chats.dart';
-import 'package:chay_ui_flutter/presentation/home/widgets/category_selector.dart';
-import 'package:chay_ui_flutter/presentation/home/widgets/favorite_contacts.dart';
+import 'package:chat_ui_flutter/mock_data.dart';
+import 'package:chat_ui_flutter/presentation/home/widgets/recent_chats.dart';
+import 'package:chat_ui_flutter/presentation/home/widgets/category_selector.dart';
+import 'package:chat_ui_flutter/presentation/home/widgets/favorite_contacts.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

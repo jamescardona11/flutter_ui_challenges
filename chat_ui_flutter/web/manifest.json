@@ -1,6 +1,6 @@
 {
-    "name": "chay_ui_flutter",
-    "short_name": "chay_ui_flutter",
+    "name": "chat_ui_flutter",
+    "short_name": "chat_ui_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

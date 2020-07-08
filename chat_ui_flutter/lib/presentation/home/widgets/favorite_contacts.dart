@@ -1,6 +1,6 @@
-import 'package:chay_ui_flutter/models/user_model.dart';
-import 'package:chay_ui_flutter/presentation/chat/chat_page.dart';
-import 'package:chay_ui_flutter/presentation/widgets/circle_avatar_app.dart';
+import 'package:chat_ui_flutter/models/user_model.dart';
+import 'package:chat_ui_flutter/presentation/chat/chat_page.dart';
+import 'package:chat_ui_flutter/presentation/widgets/circle_avatar_app.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteContacts extends StatelessWidget {

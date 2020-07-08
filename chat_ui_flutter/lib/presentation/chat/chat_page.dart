@@ -1,6 +1,6 @@
-import 'package:chay_ui_flutter/mock_data.dart';
-import 'package:chay_ui_flutter/models/message_model.dart';
-import 'package:chay_ui_flutter/models/user_model.dart';
+import 'package:chat_ui_flutter/mock_data.dart';
+import 'package:chat_ui_flutter/models/message_model.dart';
+import 'package:chat_ui_flutter/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {

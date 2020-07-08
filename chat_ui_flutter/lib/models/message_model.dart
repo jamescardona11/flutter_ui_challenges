@@ -1,4 +1,4 @@
-import 'package:chay_ui_flutter/models/user_model.dart';
+import 'package:chat_ui_flutter/models/user_model.dart';
 
 class MessageModel {
   final UserModel sender;

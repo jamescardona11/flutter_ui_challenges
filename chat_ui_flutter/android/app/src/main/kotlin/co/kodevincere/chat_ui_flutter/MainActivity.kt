@@ -1,4 +1,4 @@
-package co.kodevincere.chay_ui_flutter
+package co.kodevincere.chat_ui_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 

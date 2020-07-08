@@ -1,5 +1,5 @@
-import 'package:chay_ui_flutter/models/message_model.dart';
-import 'package:chay_ui_flutter/models/user_model.dart';
+import 'package:chat_ui_flutter/models/message_model.dart';
+import 'package:chat_ui_flutter/models/user_model.dart';
 
 class MockData {
   static final UserModel currentUser = UserModel(id: 0, name: 'Me', imageUrl: 'assets/images/greg.jpg');
