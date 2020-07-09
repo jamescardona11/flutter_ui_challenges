@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_animated_app/login_layout.dart';
+import 'package:login_animated_app/login_page.dart';
 import 'package:login_animated_app/pages/splash_layout.dart';
 
 void main() => runApp(MyApp());

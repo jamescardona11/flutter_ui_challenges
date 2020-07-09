@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class InputCad extends StatefulWidget {
   final double width, height;
+  final Widget child;
 
   const InputCad({
     Key key,
     @required this.width,
     @required this.height,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class _InputCadState extends State<InputCad> {
           topRight: Radius.circular(25),
         ),
       ),
+      child: widget.child,
     );
   }
 }

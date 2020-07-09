@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_animated_app/constants.dart';
 import 'package:login_animated_app/pages/sign_in_layout.dart';
 import 'package:login_animated_app/pages/splash_layout.dart';
 
@@ -8,10 +9,12 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: kBackgroundColor,
       body: Stack(
         children: [
-          SplashLayout(),
+          SplashLayout(
+            isShowInputCard: true,
+          ),
           Positioned(
             bottom: 0,
             child: SignInLayout(),

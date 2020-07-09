@@ -3,29 +3,37 @@ import 'package:login_animated_app/constants.dart';
 import 'package:login_animated_app/widgets/RoundedCustomButton.dart';
 
 class SplashLayout extends StatelessWidget {
+  final bool isShowInputCard;
+
+  const SplashLayout({
+    Key key,
+    @required this.isShowInputCard,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(height: size.height * 0.15),
-          const Text(
+          SizedBox(height: size.height * 0.08),
+          Text(
             'Learn Free',
             style: TextStyle(
-              color: kHeadingColor,
+              color: isShowInputCard ? Colors.white : kHeadingColor,
               fontSize: 28,
               fontWeight: FontWeight.bold,
             ),
           ),
+          SizedBox(height: size.height * 0.03),
           Container(
             margin: EdgeInsets.all(20),
             padding: EdgeInsets.symmetric(horizontal: 32),
-            child: const Text(
+            child: Text(
               'We make learning easy. Follow @jamescardona11 to learn flutter for free.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: kHeadingColor,
+                color: isShowInputCard ? Colors.white : kHeadingColor,
                 fontSize: 14,
               ),
             ),
