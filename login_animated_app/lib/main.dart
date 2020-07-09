@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_animated_app/splash_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,15 +8,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Nunito',
+      ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
+        body: SplashPage(),
       ),
     );
   }
