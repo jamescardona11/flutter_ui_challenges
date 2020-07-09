@@ -4,10 +4,12 @@ import 'package:login_animated_app/widgets/RoundedCustomButton.dart';
 
 class SplashLayout extends StatelessWidget {
   final bool isShowInputCard;
+  final VoidCallback getStarted;
 
   const SplashLayout({
     Key key,
     @required this.isShowInputCard,
+    this.getStarted,
   }) : super(key: key);
 
   @override
@@ -48,7 +50,7 @@ class SplashLayout extends StatelessWidget {
             width: size.width * 0.7,
             filled: true,
             content: 'Get Started',
-            onPress: () {},
+            onPress: getStarted,
           ),
           SizedBox(height: size.height * 0.01),
         ],

@@ -12,23 +12,20 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<double> _opacity;
-  Animation<double> _widthContainer;
   final Duration duration = Duration(milliseconds: 1000);
   final Duration positionDuration = Duration(milliseconds: 500);
 
-  final animatedSignInPosition = ValueNotifier<bool>(false);
+  final openSignUpPosition = ValueNotifier<bool>(false);
+  final openSignInPosition = ValueNotifier<bool>(false);
 
   @override
   void initState() {
     super.initState();
-
     _animationController = AnimationController(
       vsync: this,
       duration: duration,
     );
     _opacity = Tween(begin: 1.0, end: 0.7).animate(_animationController);
-    _widthContainer = Tween(begin: 0.0, end: 25.0).animate(_animationController);
-
     _animationController.addListener(() {
       //print('${_widthContainer.value}');
     });
@@ -40,63 +37,68 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      body: Stack(
-        children: [
-          SplashLayout(
-            isShowInputCard: true,
-          ),
-          ValueListenableBuilder(
-            valueListenable: animatedSignInPosition,
-            builder: (_, value, child) {
-              print('VALUE: $value');
-              return AnimatedPositioned(
+      body: GestureDetector(
+        onTap: (){},
+        child: Stack(
+          children: [
+            SplashLayout(
+              isShowInputCard: true,
+              getStarted: () {
+                openSignInPosition.value = true;
+              },
+            ),
+            ValueListenableBuilder(
+              valueListenable: openSignInPosition,
+              builder: (context, openSignIn, child) => ValueListenableBuilder(
+                valueListenable: openSignUpPosition,
+                builder: (_, openSignUp, child) {
+                  return AnimatedPositioned(
+                    duration: positionDuration,
+                    bottom: openSignIn ? openSignUp ? 20 : 0 : -size.height * 0.65,
+                    left: openSignUp ? 25 : 0,
+                    right: openSignUp ? 25 : 0,
+                    child: child,
+                  );
+                },
+                child: FadeTransition(
+                  opacity: _opacity,
+                  child: Container(
+                    width: size.width,
+                    height: size.height * 0.65,
+                    child: SignInLayout(
+                      loginOnPress: () {
+                        openSignUpPosition.value = false;
+                        _animationController.reverse();
+                      },
+                      newAccountOnPress: () {
+                        openSignUpPosition.value = true;
+                        _animationController.forward();
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            ValueListenableBuilder(
+              valueListenable: openSignUpPosition,
+              builder: (_, value, child) => AnimatedPositioned(
                 duration: positionDuration,
-                bottom: value ? 20 : 0,
-                left: value ? 25 : 0,
-                right: value ? 25 : 0,
-                child: child,
-              );
-            },
-            child: FadeTransition(
-              opacity: _opacity,
-              child: Container(
-                width: size.width,
-                height: size.height * 0.65,
-                child: SignInLayout(
-                  loginOnPress: () {
-                    animatedSignInPosition.value = false;
-                    _animationController.reverse();
-                  },
-                  newAccountOnPress: () {
-                    animatedSignInPosition.value = true;
-                    _animationController.forward();
-                  },
+                bottom: value ? 0 : -size.height * 0.65,
+                child: Container(
+                  width: size.width,
+                  height: size.height * 0.65,
+                  child: SignUpLayout(
+                    createOnPress: () {},
+                    backOnPress: () {
+                      openSignUpPosition.value = false;
+                      _animationController.reverse();
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-          ValueListenableBuilder(
-            valueListenable: animatedSignInPosition,
-            builder: (_, value, child) => AnimatedPositioned(
-              duration: positionDuration,
-              bottom: value ? 0 : -size.height * 0.65,
-              child: Container(
-                width: size.width,
-                height: size.height * 0.65,
-                child: SignUpLayout(
-                  createOnPress: () {
-                    animatedSignInPosition.value = false;
-                    _animationController.reverse();
-                  },
-                  backOnPress: () {
-                    animatedSignInPosition.value = true;
-                    _animationController.forward();
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
