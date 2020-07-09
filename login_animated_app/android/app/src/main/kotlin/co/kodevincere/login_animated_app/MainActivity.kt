@@ -1,4 +1,4 @@
-package co.kodevincere.animated_login_app
+package co.kodevincere.login_animated_app
 
 import io.flutter.embedding.android.FlutterActivity
 

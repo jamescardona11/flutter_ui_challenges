@@ -1,4 +1,4 @@
-# animated_login_app
+# login_animated_app
 
 A new Flutter application.
 
