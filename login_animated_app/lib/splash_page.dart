@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_animated_app/constants.dart';
+import 'package:login_animated_app/widgets/RoundedCustomButton.dart';
 
 class SplashPage extends StatelessWidget {
   @override
@@ -36,11 +37,7 @@ class SplashPage extends StatelessWidget {
               width: size.width * 0.7,
             ),
             Expanded(child: SizedBox()),
-            Container(
-              width: 50,
-              height: 50,
-              color: Color(0xFFB40284A),
-            ),
+            RoundedCustomButton(),
             SizedBox(height: size.height * 0.01),
           ],
         ),
