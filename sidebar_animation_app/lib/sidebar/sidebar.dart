@@ -53,7 +53,31 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
               children: <Widget>[
                 Expanded(
                   child: Container(
+                    height: double.infinity,
                     color: Color(0xff262AAA),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 100),
+                        ListTile(
+                          leading: CircleAvatar(
+                            radius: 35,
+                            backgroundColor: Colors.white,
+                            child: Text(
+                              'ME',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          title: Text(
+                            'Me',
+                            style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
+                          ),
+                          subtitle: Text(
+                            '@jamescardona11',
+                            style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Align(
