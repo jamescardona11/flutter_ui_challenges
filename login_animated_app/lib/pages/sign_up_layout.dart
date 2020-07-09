@@ -9,8 +9,6 @@ class SignUpLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return InputCad(
-      width: size.width,
-      height: size.height * 0.65,
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(

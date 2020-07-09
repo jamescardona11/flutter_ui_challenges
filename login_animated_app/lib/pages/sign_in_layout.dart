@@ -5,12 +5,18 @@ import 'package:login_animated_app/widgets/input_card.dart';
 import 'package:login_animated_app/widgets/input_text_field.dart';
 
 class SignInLayout extends StatelessWidget {
+  final VoidCallback loginOnPress, newAccountOnPress;
+
+  const SignInLayout({
+    Key key,
+    @required this.loginOnPress,
+    @required this.newAccountOnPress,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return InputCad(
-      width: size.width,
-      height: size.height * 0.65,
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -37,14 +43,14 @@ class SignInLayout extends StatelessWidget {
             ),
             Expanded(child: SizedBox.shrink()),
             RoundedCustomButton(
-              onPress: () {},
+              onPress: loginOnPress,
               content: 'Login',
               width: size.width * 0.7,
               filled: true,
             ),
             SizedBox(height: size.height * 0.015),
             RoundedCustomButton(
-              onPress: () {},
+              onPress: newAccountOnPress,
               content: 'Create a new account',
               width: size.width * 0.7,
               filled: false,
