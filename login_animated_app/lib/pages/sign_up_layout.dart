@@ -4,7 +4,7 @@ import 'package:login_animated_app/widgets/RoundedCustomButton.dart';
 import 'package:login_animated_app/widgets/input_card.dart';
 import 'package:login_animated_app/widgets/input_text_field.dart';
 
-class SignInLayout extends StatelessWidget {
+class SignUpLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -17,7 +17,7 @@ class SignInLayout extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Login to continue',
+              'Create a new account',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -38,14 +38,14 @@ class SignInLayout extends StatelessWidget {
             Expanded(child: SizedBox.shrink()),
             RoundedCustomButton(
               onPress: () {},
-              content: 'Login',
+              content: 'Create Account',
               width: size.width * 0.7,
               filled: true,
             ),
             SizedBox(height: size.height * 0.015),
             RoundedCustomButton(
               onPress: () {},
-              content: 'Create a new account',
+              content: 'Back to Login',
               width: size.width * 0.7,
               filled: false,
             ),
