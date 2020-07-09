@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_animated_app/splash_page.dart';
+import 'package:login_animated_app/login_layout.dart';
+import 'package:login_animated_app/pages/splash_layout.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Nunito',
       ),
       home: Scaffold(
-        body: SplashPage(),
+        body: LoginPage(),
       ),
     );
   }
