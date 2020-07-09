@@ -37,7 +37,12 @@ class SplashPage extends StatelessWidget {
               width: size.width * 0.7,
             ),
             Expanded(child: SizedBox()),
-            RoundedCustomButton(),
+            RoundedCustomButton(
+              width: size.width * 0.7,
+              filled: true,
+              content: 'Get Started',
+              onPress: () {},
+            ),
             SizedBox(height: size.height * 0.01),
           ],
         ),
