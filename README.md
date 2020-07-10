@@ -14,5 +14,9 @@ I'm a mobile developer from Colombia, my main knowledge is Android and Nodejs, a
 - AnimatedBuilder  [Flutter Api](https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html)
 
 
-### Project #1 [Chat-UI](https://github.com/jamescardona11/ui-challenges/tree/master/chat_ui_flutter)
-<img src="chat_ui_flutter/gif/ui-chat.gif" width="225"/> 
+## Project
+
+| Project #1  | Project #2 |
+| :---        |    :----  |
+| [Chat-UI](https://github.com/jamescardona11/ui-challenges/tree/master/chat_ui_flutter)      | [Login-UI](https://github.com/jamescardona11/ui-challenges/tree/master/login_animated_app)      |
+| <img src="chat_ui_flutter/gif/ui-chat.gif" width="225"/>  | <img src="login_animated_app/gif/preview.gif" width="225"/>       |

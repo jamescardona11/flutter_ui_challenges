@@ -59,7 +59,6 @@ class SignInLayout extends StatelessWidget {
                 width: size.width * 0.7,
                 filled: false,
               ),
-              SizedBox(height: size.height * 0.03),
             ],
           ),
         ),

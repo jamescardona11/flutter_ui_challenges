@@ -1,16 +1,15 @@
-# login_animated_app
+# Login Animated - Flutter
 
-A new Flutter application.
+## PROJECT #2
 
-## Getting Started
+This project tries to create a UI similar from flutter-video tutorial for TVAC Studio.
 
-This project is a starting point for a Flutter application.
+**UI Credit**
+Design by: [TVAC Studio] (https://www.youtube.com/watch?v=T2xT0ZB3iaY)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This project is a part of the ui-challenges in my [Github](https://github.com/jamescardona11). Personal project to learn more about flutter exploring different widgets and multiples UI/UX.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+# Preview
+<img src="gif/image.png" width="425"/> <img src="gif/preview.gif" width="325"/> 
