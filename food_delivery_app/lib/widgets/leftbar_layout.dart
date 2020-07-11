@@ -1,20 +1,23 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/consts.dart';
 
 class LeftBarLayout extends StatelessWidget {
-  final double size;
+  final double widthbar;
+  final List<String> elements = ['Thai', 'Beef', 'Chicken', 'Vegetables'];
 
-  const LeftBarLayout({
+  LeftBarLayout({
     Key key,
-    this.size = 65,
+    this.widthbar = 70,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Row(
       children: [
         Container(
-          width: size,
+          width: widthbar,
           height: double.infinity,
           color: AppColors.greenColor,
           child: SafeArea(
@@ -22,11 +25,41 @@ class LeftBarLayout extends StatelessWidget {
               children: [
                 Positioned(
                   top: 0,
-                  child: ImageTop(width: size),
+                  child: ImageTop(width: widthbar),
+                ),
+                Positioned(
+                  top: size.height / 5,
+                  bottom: size.height / 5,
+                  child: Container(
+                    width: widthbar,
+                    height: size.height,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: elements.length,
+                      itemBuilder: (context, index) {
+                        return Transform.rotate(
+                          angle: -math.pi / 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 35),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(minWidth: 75),
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Text(
+                                  elements[index],
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
                 Positioned(
                   bottom: 0,
-                  child: _BottomMenu(size: size),
+                  child: _BottomMenu(size: widthbar),
                 )
               ],
             ),
