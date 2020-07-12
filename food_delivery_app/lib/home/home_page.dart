@@ -19,6 +19,43 @@ class _HomePageState extends State<HomePage> {
         height: size.height,
         child: Stack(
           children: [
+            Positioned(
+              top: 55,
+              left: 100,
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hello',
+                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '@jamescardona11',
+                        style: TextStyle(color: AppColors.greenColor, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 10),
+                  Container(
+                    width: 190,
+                    height: 45,
+                    margin: EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.greenLightColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [Text('Search'), Icon(Icons.search)],
+                    ),
+                  ),
+                ],
+              ),
+            ),
             LeftBarLayout(),
             Positioned(
               top: 100,
@@ -34,9 +71,88 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+            ),
+            Positioned(
+              top: size.height * 0.4 + 130,
+              left: 120,
+              child: Container(
+                child: Column(
+                  children: [
+                    Text(
+                      'Popular',
+                      style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Container(
+                      width: size.width * 0.7,
+                      height: size.height,
+                      child: ListView.builder(
+                        itemCount: MockData.mockFoodModel.length,
+                        itemBuilder: (context, index) => _BottomItemList(model: MockData.mockFoodModel[index]),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _BottomItemList extends StatelessWidget {
+  final FoodModel model;
+
+  const _BottomItemList({
+    Key key,
+    @required this.model,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      width: size.width,
+      height: 90,
+      margin: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: AppColors.greenLightColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          Image(
+            width: 85,
+            image: AssetImage('assets/images/${model.imgPath}'),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                model.name,
+                style: TextStyle(color: Colors.black, fontSize: 14),
+              ),
+              SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    model.priceTxt,
+                    style: TextStyle(color: AppColors.redColor, fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    '(${model.calory.toString()} calories)',
+                    style: TextStyle(color: Colors.black, fontSize: 10),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -69,6 +185,23 @@ class _TopViewPagerItems extends StatelessWidget {
                 color: AppColors.greenColor,
                 borderRadius: BorderRadius.circular(20),
               ),
+              child: Container(
+                margin: EdgeInsets.only(left: 15, right: 15, bottom: 45),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '***** (120 review)',
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 11),
+                    ),
+                    Text(
+                      model.name,
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -90,9 +223,10 @@ class _TopViewPagerItems extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 0,
+            top: 25,
+            right: 25,
             child: Image(
-              width: 150,
+              width: 135,
               image: AssetImage('assets/images/${model.imgPath}'),
             ),
           ),
