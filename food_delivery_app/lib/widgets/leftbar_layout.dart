@@ -2,9 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/consts.dart';
 
-class LeftBarLayout extends StatelessWidget {
+class LeftBarLayout extends StatefulWidget {
   final double widthbar;
-  final List<String> elements = ['Thai', 'Beef', 'Chicken', 'Vegetables'];
 
   LeftBarLayout({
     Key key,
@@ -12,72 +11,177 @@ class LeftBarLayout extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _LeftBarLayoutState createState() => _LeftBarLayoutState();
+}
+
+class _LeftBarLayoutState extends State<LeftBarLayout> with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation<AlignmentGeometry> _alignmentAnimation;
+  Tween<AlignmentGeometry> _alignmentTween;
+
+  final List<String> elements = ['Thai', 'Beef', 'Chicken', 'Fresh'];
+  final selectedIndex = ValueNotifier<int>(0);
+  int align = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+
+    _alignmentTween = Tween(
+      begin: _calculateAlignment(0),
+      end: _calculateAlignment(0),
+    );
+    _alignmentAnimation = _alignmentTween.animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Row(
-      children: [
-        Container(
-          width: widthbar,
-          height: double.infinity,
-          color: AppColors.greenColor,
-          child: SafeArea(
-            child: Stack(
-              children: [
-                Positioned(
-                  top: 0,
-                  child: ImageTop(width: widthbar),
-                ),
-                Positioned(
-                  top: size.height / 5,
-                  bottom: size.height / 5,
-                  child: Container(
-                    width: widthbar,
-                    height: size.height,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: elements.length,
-                      itemBuilder: (context, index) {
-                        return Transform.rotate(
-                          angle: -math.pi / 2,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 35),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(minWidth: 75),
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Text(
-                                  elements[index],
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  child: _BottomMenu(size: widthbar),
-                )
-              ],
-            ),
-          ),
-        ),
-        ClipPath(
-          clipper: _MountainPath(),
-          child: Container(
-            width: 25,
-            height: 100,
+    return Container(
+      width: widget.widthbar + 25,
+      height: double.infinity,
+      child: Stack(
+        children: [
+          Container(
+            width: widget.widthbar,
+            height: double.infinity,
             color: AppColors.greenColor,
-            child: Icon(
-              Icons.keyboard_arrow_right,
-              size: 20,
+          ),
+          Positioned(
+            top: size.height * 0.05,
+            child: ImageTop(width: widget.widthbar),
+          ),
+          Positioned(
+            top: size.height / 5,
+            bottom: size.height / 3,
+            child: ValueListenableBuilder(
+              valueListenable: selectedIndex,
+              builder: (_, value, __) => Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _ItemText(
+                    element: elements[0],
+                    selectedIndex: 0 == selectedIndex.value,
+                    size: widget.widthbar,
+                    onPress: () {
+                      _initAnimationAndStart(_alignmentAnimation.value, _calculateAlignment(0));
+                      selectedIndex.value = 0;
+                    },
+                  ),
+                  _ItemText(
+                    element: elements[1],
+                    selectedIndex: 1 == selectedIndex.value,
+                    size: widget.widthbar,
+                    onPress: () {
+                      _initAnimationAndStart(_alignmentAnimation.value, _calculateAlignment(1));
+                      selectedIndex.value = 1;
+                    },
+                  ),
+                  _ItemText(
+                    element: elements[2],
+                    selectedIndex: 2 == selectedIndex.value,
+                    size: widget.widthbar,
+                    onPress: () {
+                      _initAnimationAndStart(_alignmentAnimation.value, _calculateAlignment(2));
+                      selectedIndex.value = 2;
+                    },
+                  ),
+                  _ItemText(
+                    element: elements[3],
+                    selectedIndex: 3 == selectedIndex.value,
+                    size: widget.widthbar,
+                    onPress: () {
+                      _initAnimationAndStart(_alignmentAnimation.value, _calculateAlignment(3));
+                      selectedIndex.value = 3;
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: size.height * 0.03,
+            child: _BottomMenu(size: widget.widthbar),
+          ),
+          AlignTransition(
+            alignment: _alignmentAnimation,
+            child: ClipPath(
+              clipper: _MountainPath(),
+              child: Container(
+                width: 25,
+                height: 100,
+                color: AppColors.greenColor,
+                child: Icon(
+                  Icons.keyboard_arrow_right,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Alignment _calculateAlignment(int position) {
+    double delta = 0.3; //0.9 / (elements.length - 1);
+    return Alignment(1, -0.6 + position * delta);
+  }
+
+  void _initAnimationAndStart(Alignment fromAlign, Alignment toAlign) {
+    _alignmentTween.begin = fromAlign;
+    _alignmentTween.end = toAlign;
+    _animationController.reset();
+    _animationController.forward();
+  }
+}
+
+class _ItemText extends StatelessWidget {
+  const _ItemText({
+    Key key,
+    @required this.element,
+    @required this.selectedIndex,
+    this.size,
+    this.onPress,
+  }) : super(key: key);
+
+  final String element;
+  final bool selectedIndex;
+  final double size;
+  final VoidCallback onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        height: 75,
+        width: size,
+        color: AppColors.greenColor,
+        margin: EdgeInsets.only(left: 0),
+        child: Transform.rotate(
+          angle: -math.pi / 2,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              element,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: selectedIndex ? Colors.black : Colors.black54,
+              ),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
