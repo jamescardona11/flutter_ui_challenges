@@ -9,7 +9,7 @@ class MockData {
       calory: 460,
       protein: 30,
       item: "#Chicken #Juicy BBQ #Vegetables #Potato Wedges #Coleslaw Salad #Healthy Yolk #Spicy Fries #Mushroom",
-      imgPath: "1.png",
+      imgPath: "food_image_1.png",
     ),
     FoodModel(
       name: "Porata Masala",
@@ -18,7 +18,7 @@ class MockData {
       calory: 300,
       protein: 45,
       item: "#Chicken #Juicy BBQ #Vegetables #Potato Wedges #Coleslaw Salad #Healthy Yolk #Spicy Fries #Mushroom",
-      imgPath: "2.png",
+      imgPath: "food_image_2.png",
     ),
     FoodModel(
       name: "Taco Kebab",
@@ -27,7 +27,7 @@ class MockData {
       calory: 320,
       protein: 150,
       item: "#Chicken #Juicy BBQ #Vegetables #Potato Wedges #Coleslaw Salad #Healthy Yolk #Spicy Fries #Mushroom",
-      imgPath: "3.png",
+      imgPath: "food_image_3.png",
     ),
     FoodModel(
       name: "Chicken Salad",
@@ -36,7 +36,7 @@ class MockData {
       calory: 65,
       protein: 50,
       item: "#Chicken #Juicy BBQ #Vegetables #Potato Wedges #Coleslaw Salad #Healthy Yolk #Spicy Fries #Mushroom",
-      imgPath: "4.png",
+      imgPath: "food_image_4.png",
     ),
     FoodModel(
       name: "Chicken Eggs",
@@ -45,7 +45,7 @@ class MockData {
       calory: 120,
       protein: 310,
       item: "#Chicken #Juicy BBQ #Vegetables #Potato Wedges #Coleslaw Salad #Healthy Yolk #Spicy Fries #Mushroom",
-      imgPath: "5.png",
+      imgPath: "food_image_5.png",
     ),
   ];
 }

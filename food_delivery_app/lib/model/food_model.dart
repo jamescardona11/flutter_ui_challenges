@@ -16,4 +16,9 @@ class FoodModel {
     this.item,
     this.imgPath,
   });
+
+  String get priceTxt {
+    final pr = price.toString();
+    return '\$ ${pr.substring(0, pr.length - 2)}';
+  }
 }
