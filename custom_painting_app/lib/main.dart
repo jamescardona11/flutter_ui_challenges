@@ -24,8 +24,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Offset> points = [];
-  Color pickerColor = Color(0xff443a49);
-  Color currentColor = Color(0xff443a49);
+  Color selectedColor = Colors.black;
+  double stroke = 2.0;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,11 @@ class _HomePageState extends State<HomePage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       child: CustomPaint(
-                        painter: MyCustomPainter(points: points),
+                        painter: MyCustomPainter(
+                          points: points,
+                          color: selectedColor,
+                          stroke: stroke,
+                        ),
                       ),
                     ),
                   ),
@@ -99,7 +103,25 @@ class _HomePageState extends State<HomePage> {
                   decoration: kDecoration.copyWith(color: Colors.white),
                   child: Row(
                     children: [
-                      IconButton(icon: Icon(Icons.color_lens), onPressed: myShowDialog),
+                      IconButton(
+                          icon: Icon(
+                            Icons.color_lens,
+                            color: selectedColor,
+                          ),
+                          onPressed: myShowDialog),
+                      Expanded(
+                        child: Slider(
+                          min: 1.0,
+                          max: 7.0,
+                          value: stroke,
+                          activeColor: selectedColor,
+                          onChanged: (value) {
+                            setState(() {
+                              stroke = value;
+                            });
+                          },
+                        ),
+                      ),
                       IconButton(
                           icon: Icon(Icons.layers_clear),
                           onPressed: () {
@@ -124,32 +146,18 @@ class _HomePageState extends State<HomePage> {
       child: AlertDialog(
         title: const Text('Pick a color!'),
         content: SingleChildScrollView(
-          child: ColorPicker(
-            pickerColor: pickerColor,
-            onColorChanged: changeColor,
-            showLabel: true,
-            pickerAreaHeightPercent: 0.8,
+          child: BlockPicker(
+            pickerColor: selectedColor,
+            onColorChanged: (Color color) {
+              setState(() => selectedColor = color);
+              Navigator.of(context).pop();
+            },
           ),
-          // Use Material color picker:
-          //
-          // child: MaterialPicker(
-          //   pickerColor: pickerColor,
-          //   onColorChanged: changeColor,
-          //   showLabel: true, // only on portrait mode
-          // ),
-          //
-          // Use Block color picker:
-          //
-          // child: BlockPicker(
-          //   pickerColor: currentColor,
-          //   onColorChanged: changeColor,
-          // ),
         ),
         actions: <Widget>[
           FlatButton(
-            child: const Text('Got it'),
+            child: const Text('Close'),
             onPressed: () {
-              setState(() => currentColor = pickerColor);
               Navigator.of(context).pop();
             },
           ),
@@ -157,21 +165,17 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  void changeColor(Color color) {
-    setState(() => pickerColor = color);
-  }
 }
 
 class MyCustomPainter extends CustomPainter {
   final List<Offset> points;
   final Color color;
-  final double width;
+  final double stroke;
 
   MyCustomPainter({
     this.points,
     this.color = Colors.black,
-    this.width = 2.0,
+    this.stroke = 2.0,
   });
 
   @override
@@ -181,8 +185,8 @@ class MyCustomPainter extends CustomPainter {
     canvas.drawRect(rect, backgroundPaint);
 
     Paint paint = Paint()
-      ..color = Colors.black
-      ..strokeWidth = width
+      ..color = color
+      ..strokeWidth = stroke
       ..isAntiAlias = true
       ..strokeCap = StrokeCap.round;
 
@@ -196,7 +200,7 @@ class MyCustomPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
+  bool shouldRepaint(MyCustomPainter oldDelegate) => true;
 }
 
 class DrawingArea {
