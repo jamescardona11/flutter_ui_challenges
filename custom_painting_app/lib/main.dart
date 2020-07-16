@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:custom_painting_app/my_custom_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+
+import 'consts.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,112 +32,22 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-
-    final kDecoration = BoxDecoration(
-      borderRadius: BorderRadius.all(
-        Radius.circular(20.0),
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.4),
-          blurRadius: 5.0,
-          spreadRadius: 1.0,
-        )
-      ],
-    );
-
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromRGBO(138, 35, 135, 1.0),
-                  Color.fromRGBO(233, 64, 87, 1.0),
-                  Color.fromRGBO(242, 113, 33, 1.0),
-                ],
-              ),
-            ),
-          ),
+          _BackgroundWidget(),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: width * 0.8,
-                  height: height * 0.7,
-                  decoration: kDecoration,
-                  child: GestureDetector(
-                    onPanDown: (details) {
-                      setState(() {
-                        points.add(DrawingArea(
-                          point: details.localPosition,
-                          areaPaint: getCurrentPaint(),
-                        ));
-                      });
-                    },
-                    onPanUpdate: (details) {
-                      setState(() {
-                        points.add(DrawingArea(
-                          point: details.localPosition,
-                          areaPaint: getCurrentPaint(),
-                        ));
-                      });
-                    },
-                    onPanEnd: (details) {
-                      setState(() {
-                        points.add(null);
-                      });
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      child: CustomPaint(
-                        painter: MyCustomPainter(
-                          points: points,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                _PaintArea(),
                 SizedBox(height: 20),
-                Container(
-                  width: width * 0.8,
-                  decoration: kDecoration.copyWith(color: Colors.white),
-                  child: Row(
-                    children: [
-                      IconButton(
-                          icon: Icon(
-                            Icons.color_lens,
-                            color: selectedColor,
-                          ),
-                          onPressed: myShowDialog),
-                      Expanded(
-                        child: Slider(
-                          min: 1.0,
-                          max: 7.0,
-                          value: stroke,
-                          activeColor: selectedColor,
-                          onChanged: (value) {
-                            setState(() {
-                              stroke = value;
-                            });
-                          },
-                        ),
-                      ),
-                      IconButton(
-                          icon: Icon(Icons.layers_clear),
-                          onPressed: () {
-                            setState(() {
-                              points = [];
-                            });
-                          }),
-                    ],
-                  ),
+                _ActionBarWidget(
+                  clearCanvas: () {},
+                  changeSliderValue: (value) {
+                    print('change value');
+                  },
+                  changeColorValue: (color) {},
                 )
               ],
             ),
@@ -143,12 +56,124 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+class _PaintArea extends StatefulWidget {
+  @override
+  _PaintAreState createState() => _PaintAreState();
+}
+
+class _PaintAreState extends State<_PaintArea> {
+  List<DrawingArea> points = [];
+  Color selectedColor = Colors.black;
+  double stroke = 2.0;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      width: size.width * 0.8,
+      height: size.height * 0.7,
+      decoration: kDecoration,
+      child: GestureDetector(
+        onPanDown: (details) {
+          addPoint(details.localPosition);
+        },
+        onPanUpdate: (details) {
+          addPoint(details.localPosition);
+        },
+        onPanEnd: (details) {
+          addPoint(null);
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          child: CustomPaint(
+            painter: MyCustomPainter(
+              points: points,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void addPoint(Offset point) {
+    points.add(DrawingArea(
+      point: point,
+      areaPaint: getCurrentPaint(),
+    ));
+
+    setState(() {});
+  }
 
   Paint getCurrentPaint() => Paint()
     ..color = selectedColor
     ..strokeWidth = stroke
     ..isAntiAlias = true
     ..strokeCap = StrokeCap.round;
+}
+
+class _ActionBarWidget extends StatefulWidget {
+  final VoidCallback clearCanvas;
+  final Function(double) changeSliderValue;
+  final Function(Color) changeColorValue;
+
+  const _ActionBarWidget({
+    Key key,
+    @required this.clearCanvas,
+    @required this.changeSliderValue,
+    @required this.changeColorValue,
+  }) : super(key: key);
+
+  @override
+  _ActionBarWidgetState createState() => _ActionBarWidgetState();
+}
+
+class _ActionBarWidgetState extends State<_ActionBarWidget> {
+  final selectedColor = ValueNotifier<Color>(Colors.black);
+  final stroke = ValueNotifier<double>(2.0);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return ValueListenableBuilder(
+      valueListenable: selectedColor,
+      builder: (context, newColor, child) => Container(
+        width: size.width * 0.8,
+        decoration: kDecoration.copyWith(color: Colors.white),
+        child: Row(
+          children: [
+            IconButton(
+                icon: Icon(
+                  Icons.color_lens,
+                  color: newColor,
+                ),
+                onPressed: myShowDialog),
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: stroke,
+                builder: (context, newStroke, child) => Slider(
+                  min: 1.0,
+                  max: 7.0,
+                  value: newStroke,
+                  activeColor: newColor,
+                  onChanged: (value) {
+                    stroke.value = value;
+                    widget.changeSliderValue.call(value);
+                  },
+                ),
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.layers_clear),
+              onPressed: widget.clearCanvas,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   void myShowDialog() {
     showDialog(
@@ -157,9 +182,10 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Pick a color!'),
         content: SingleChildScrollView(
           child: BlockPicker(
-            pickerColor: selectedColor,
+            pickerColor: selectedColor.value,
             onColorChanged: (Color color) {
-              setState(() => selectedColor = color);
+              selectedColor.value = color;
+              widget.changeColorValue(color);
               Navigator.of(context).pop();
             },
           ),
@@ -177,38 +203,25 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class MyCustomPainter extends CustomPainter {
-  final List<DrawingArea> points;
-
-  MyCustomPainter({
-    this.points,
-  });
+class _BackgroundWidget extends StatelessWidget {
+  const _BackgroundWidget({
+    Key key,
+  }) : super(key: key);
 
   @override
-  void paint(Canvas canvas, Size size) {
-    Paint backgroundPaint = Paint()..color = Colors.white;
-    Rect rect = Rect.fromLTRB(0, 0, size.width, size.height);
-    canvas.drawRect(rect, backgroundPaint);
-
-    for (int x = 0; x < points.length - 1; ++x) {
-      if (points[x] != null && points[x + 1] != null) {
-        canvas.drawLine(points[x].point, points[x + 1].point, points[x].areaPaint);
-      } else if (points[x] != null && points[x + 1] == null) {
-        canvas.drawPoints(PointMode.points, [points[x].point], points[x].areaPaint);
-      }
-    }
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromRGBO(138, 35, 135, 1.0),
+            Color.fromRGBO(233, 64, 87, 1.0),
+            Color.fromRGBO(242, 113, 33, 1.0),
+          ],
+        ),
+      ),
+    );
   }
-
-  @override
-  bool shouldRepaint(MyCustomPainter oldDelegate) => true;
-}
-
-class DrawingArea {
-  final Offset point;
-  final Paint areaPaint;
-
-  DrawingArea({
-    this.point,
-    this.areaPaint,
-  });
 }
