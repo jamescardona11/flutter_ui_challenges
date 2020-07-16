@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,13 +23,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Offset> points = [];
+  Color pickerColor = Color(0xff443a49);
+  Color currentColor = Color(0xff443a49);
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
     final kDecoration = BoxDecoration(
-      color: Colors.white,
       borderRadius: BorderRadius.all(
         Radius.circular(20.0),
       ),
@@ -64,19 +70,43 @@ class _HomePageState extends State<HomePage> {
                   height: height * 0.7,
                   decoration: kDecoration,
                   child: GestureDetector(
-                    onPanDown: (details) {},
-                    onPanUpdate: (details) {},
-                    onPanEnd: (details) {},
+                    onPanDown: (details) {
+                      setState(() {
+                        points.add(details.localPosition);
+                      });
+                    },
+                    onPanUpdate: (details) {
+                      setState(() {
+                        points.add(details.localPosition);
+                      });
+                    },
+                    onPanEnd: (details) {
+                      setState(() {
+                        points.add(null);
+                      });
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      child: CustomPaint(
+                        painter: MyCustomPainter(points: points),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
                   width: width * 0.8,
-                  decoration: kDecoration,
+                  decoration: kDecoration.copyWith(color: Colors.white),
                   child: Row(
                     children: [
-                      IconButton(icon: Icon(Icons.color_lens), onPressed: () {}),
-                      IconButton(icon: Icon(Icons.color_lens), onPressed: () {}),
+                      IconButton(icon: Icon(Icons.color_lens), onPressed: myShowDialog),
+                      IconButton(
+                          icon: Icon(Icons.layers_clear),
+                          onPressed: () {
+                            setState(() {
+                              points = [];
+                            });
+                          }),
                     ],
                   ),
                 )
@@ -87,6 +117,86 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  void myShowDialog() {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        title: const Text('Pick a color!'),
+        content: SingleChildScrollView(
+          child: ColorPicker(
+            pickerColor: pickerColor,
+            onColorChanged: changeColor,
+            showLabel: true,
+            pickerAreaHeightPercent: 0.8,
+          ),
+          // Use Material color picker:
+          //
+          // child: MaterialPicker(
+          //   pickerColor: pickerColor,
+          //   onColorChanged: changeColor,
+          //   showLabel: true, // only on portrait mode
+          // ),
+          //
+          // Use Block color picker:
+          //
+          // child: BlockPicker(
+          //   pickerColor: currentColor,
+          //   onColorChanged: changeColor,
+          // ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: const Text('Got it'),
+            onPressed: () {
+              setState(() => currentColor = pickerColor);
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  void changeColor(Color color) {
+    setState(() => pickerColor = color);
+  }
+}
+
+class MyCustomPainter extends CustomPainter {
+  final List<Offset> points;
+  final Color color;
+  final double width;
+
+  MyCustomPainter({
+    this.points,
+    this.color = Colors.black,
+    this.width = 2.0,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint backgroundPaint = Paint()..color = Colors.white;
+    Rect rect = Rect.fromLTRB(0, 0, size.width, size.height);
+    canvas.drawRect(rect, backgroundPaint);
+
+    Paint paint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = width
+      ..isAntiAlias = true
+      ..strokeCap = StrokeCap.round;
+
+    for (int x = 0; x < points.length - 1; ++x) {
+      if (points[x] != null && points[x + 1] != null) {
+        canvas.drawLine(points[x], points[x + 1], paint);
+      } else if (points[x] != null && points[x + 1] == null) {
+        canvas.drawPoints(PointMode.points, [points[x]], paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
 class DrawingArea {
