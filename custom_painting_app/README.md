@@ -1,16 +1,14 @@
-# custom_painting_app
+# Drawing Painting app
 
-A new Flutter application.
+## PROJECT #4
 
-## Getting Started
+This project is a starting point for a Drawing app in flutter.
 
-This project is a starting point for a Flutter application.
+This project is a part of the ui-challenges in my [Github](https://github.com/jamescardona11). Personal project to learn more about flutter exploring different widgets and multiples UI/UX.
 
-A few resources to get you started if this is your first Flutter project:
+**Credits:**
+[
+RetroPortal Studio] (https://www.youtube.com/watch?v=Zv5T2C1oKus)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Preview
+<img src="preview/preview.png" width="425"/> <img src="preview/preview.gif" width="300"/> 
