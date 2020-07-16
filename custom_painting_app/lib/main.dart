@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Offset> points = [];
+  List<DrawingArea> points = [];
   Color selectedColor = Colors.black;
   double stroke = 2.0;
 
@@ -72,12 +72,18 @@ class _HomePageState extends State<HomePage> {
                   child: GestureDetector(
                     onPanDown: (details) {
                       setState(() {
-                        points.add(details.localPosition);
+                        points.add(DrawingArea(
+                          point: details.localPosition,
+                          areaPaint: getCurrentPaint(),
+                        ));
                       });
                     },
                     onPanUpdate: (details) {
                       setState(() {
-                        points.add(details.localPosition);
+                        points.add(DrawingArea(
+                          point: details.localPosition,
+                          areaPaint: getCurrentPaint(),
+                        ));
                       });
                     },
                     onPanEnd: (details) {
@@ -90,8 +96,6 @@ class _HomePageState extends State<HomePage> {
                       child: CustomPaint(
                         painter: MyCustomPainter(
                           points: points,
-                          color: selectedColor,
-                          stroke: stroke,
                         ),
                       ),
                     ),
@@ -140,6 +144,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Paint getCurrentPaint() => Paint()
+    ..color = selectedColor
+    ..strokeWidth = stroke
+    ..isAntiAlias = true
+    ..strokeCap = StrokeCap.round;
+
   void myShowDialog() {
     showDialog(
       context: context,
@@ -168,14 +178,10 @@ class _HomePageState extends State<HomePage> {
 }
 
 class MyCustomPainter extends CustomPainter {
-  final List<Offset> points;
-  final Color color;
-  final double stroke;
+  final List<DrawingArea> points;
 
   MyCustomPainter({
     this.points,
-    this.color = Colors.black,
-    this.stroke = 2.0,
   });
 
   @override
@@ -184,17 +190,11 @@ class MyCustomPainter extends CustomPainter {
     Rect rect = Rect.fromLTRB(0, 0, size.width, size.height);
     canvas.drawRect(rect, backgroundPaint);
 
-    Paint paint = Paint()
-      ..color = color
-      ..strokeWidth = stroke
-      ..isAntiAlias = true
-      ..strokeCap = StrokeCap.round;
-
     for (int x = 0; x < points.length - 1; ++x) {
       if (points[x] != null && points[x + 1] != null) {
-        canvas.drawLine(points[x], points[x + 1], paint);
+        canvas.drawLine(points[x].point, points[x + 1].point, points[x].areaPaint);
       } else if (points[x] != null && points[x + 1] == null) {
-        canvas.drawPoints(PointMode.points, [points[x]], paint);
+        canvas.drawPoints(PointMode.points, [points[x].point], points[x].areaPaint);
       }
     }
   }
@@ -204,6 +204,11 @@ class MyCustomPainter extends CustomPainter {
 }
 
 class DrawingArea {
-  Offset point;
-  Paint areaPaint;
+  final Offset point;
+  final Paint areaPaint;
+
+  DrawingArea({
+    this.point,
+    this.areaPaint,
+  });
 }
