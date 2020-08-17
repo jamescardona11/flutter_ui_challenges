@@ -12,4 +12,4 @@ This project is a part of the ui-challenges in my [Github](https://github.com/ja
 
 
 # Preview
-<img src="gif/image.png" width="425"/> <img src="gif/ui-chat.gif" width="325"/> 
+<img src="preview/image.png" width="425"/> <img src="preview/preview.gif" width="325"/> 
