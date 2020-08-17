@@ -1,6 +1,8 @@
 import 'package:course_ui_app/constants.dart';
 import 'package:course_ui_app/model/category.dart';
+import 'package:course_ui_app/model/course.dart';
 import 'package:course_ui_app/res.dart';
+import 'package:course_ui_app/views/detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,20 +11,18 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                _AppBar(),
-                SizedBox(height: 25),
-                _SearchBar(),
-                SizedBox(height: 30),
-                Expanded(
-                  child: _CourseGrid(),
-                ),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              _AppBar(),
+              SizedBox(height: 25),
+              _SearchBar(),
+              SizedBox(height: 30),
+              Expanded(
+                child: _CourseGrid(),
+              ),
+            ],
           ),
         ),
       ),
@@ -114,17 +114,28 @@ class _CourseGrid extends StatelessWidget {
               childAspectRatio: 7 / 8,
             ),
             itemBuilder: (context, index) {
-              return Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  image: DecorationImage(image: AssetImage(categories[index].image), fit: BoxFit.cover),
-                ),
-                child: Column(
-                  children: [
-                    Text('${categories[index].name}', style: kTitleTextStyle.copyWith(fontSize: 16)),
-                    Text('${categories[index].courses} courses', style: TextStyle(color: kTextColor.withOpacity(0.5))),
-                  ],
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailView(kCourse)));
+                },
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    image: DecorationImage(
+                      image: AssetImage(categories[index].image),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('${categories[index].name}', style: kTitleTextStyle.copyWith(fontSize: 16)),
+                      Text('${categories[index].courses} courses',
+                          style: TextStyle(color: kTextColor.withOpacity(0.5))),
+                    ],
+                  ),
                 ),
               );
             },
