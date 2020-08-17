@@ -53,5 +53,20 @@ Course kCourse = Course(
       available: false,
       time: '36:35 min',
     ),
+    CourseContent(
+      name: 'Design Thinking - Intro 2',
+      available: true,
+      time: '16:35 min',
+    ),
+    CourseContent(
+      name: 'Design Thinking Process 2',
+      available: false,
+      time: '12:35 min',
+    ),
+    CourseContent(
+      name: 'Customer Perspective 2',
+      available: false,
+      time: '36:35 min',
+    ),
   ],
 );

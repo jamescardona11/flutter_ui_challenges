@@ -149,6 +149,37 @@ class _BottomBar extends StatelessWidget {
                   ),
                 ],
               ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 80,
+                    height: 50,
+                    padding: EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFEDEE),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: SvgPicture.asset(Res.shopping_bag),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: kBlueColor,
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      child: Text(
+                        'Buy Now',
+                        style: kSubtitleTextStyle.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           )
         ],
