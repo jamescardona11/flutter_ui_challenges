@@ -19,7 +19,7 @@ I'm a mobile developer from Colombia, my main knowledge is Android and Nodejs, a
 | Project #1  | Project #2 |
 | :---        |    :----  |
 | [Chat-UI](https://github.com/jamescardona11/ui-challenges/tree/master/chat_ui_flutter)      | [Login-UI](https://github.com/jamescardona11/ui-challenges/tree/master/login_animated_app)      |
-| <img src="chat_ui_flutter/gif/ui-chat.gif" width="225"/>  | <img src="login_animated_app/gif/preview.gif" width="225"/>       |
+| <img src="chat_ui_flutter/preview/preview.gif" width="225"/>  | <img src="login_animated_app/gif/preview.gif" width="225"/>       |
 
 | Project #3  | Project #4 |
 | :---        |    :----  |
@@ -28,5 +28,5 @@ I'm a mobile developer from Colombia, my main knowledge is Android and Nodejs, a
 
 | Project #5  | Project #6 |
 | :---        |    :----  |
-| [ToDo](https://github.com/jamescardona11/ui-challenges/tree/master/todo_app_rp)      | []()    |
-| <img src="todo_app_rp/preview/preview.gif" width="225"/>  | <img src="" width="225"/>     |
+| [ToDo](https://github.com/jamescardona11/ui-challenges/tree/master/todo_app_rp)      | [Course](https://github.com/jamescardona11/ui-challenges/tree/master/course_ui_app)    |
+| <img src="todo_app_rp/preview/preview.gif" width="225"/>  | <img src="course_ui_app/preview/preview.gif" width="225"/>    |
