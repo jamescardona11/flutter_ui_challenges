@@ -1,4 +1,5 @@
 import 'package:course_ui_app/constants.dart';
+import 'package:course_ui_app/model/category.dart';
 import 'package:course_ui_app/res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,6 +17,10 @@ class HomeView extends StatelessWidget {
                 _AppBar(),
                 SizedBox(height: 25),
                 _SearchBar(),
+                SizedBox(height: 30),
+                Expanded(
+                  child: _CourseGrid(),
+                ),
               ],
             ),
           ),
@@ -54,14 +59,14 @@ class _SearchBar extends StatelessWidget {
       children: [
         Text(
           'Hey James,',
-          style: kStyleBold.copyWith(fontSize: 22),
+          style: kHeadingextStyle,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 5),
         Text(
           'Find a course you want to learn',
-          style: kStyleLight.copyWith(fontSize: 16),
+          style: kSubheadingextStyle,
         ),
-        SizedBox(height: 30),
+        SizedBox(height: 25),
         Container(
           width: double.infinity,
           height: 55,
@@ -79,6 +84,50 @@ class _SearchBar extends StatelessWidget {
                 style: kStyleLight.copyWith(fontSize: 14),
               ),
             ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _CourseGrid extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Categories', style: kTitleTextStyle.copyWith(fontSize: 18)),
+            Text('See All', style: kTitleTextStyle.copyWith(color: kBlueColor, fontSize: 18)),
+          ],
+        ),
+        SizedBox(height: 15),
+        Expanded(
+          child: GridView.builder(
+            itemCount: categories.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              childAspectRatio: 7 / 8,
+            ),
+            itemBuilder: (context, index) {
+              return Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(image: AssetImage(categories[index].image), fit: BoxFit.cover),
+                ),
+                child: Column(
+                  children: [
+                    Text('${categories[index].name}', style: kTitleTextStyle.copyWith(fontSize: 16)),
+                    Text('${categories[index].courses} courses', style: TextStyle(color: kTextColor.withOpacity(0.5))),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ],
