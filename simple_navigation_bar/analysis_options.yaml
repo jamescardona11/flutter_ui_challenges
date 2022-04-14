@@ -1,0 +1,17 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
+
+  errors:
+    constant_identifier_names: ignore
+    avoid_positional_boolean_parameters: ignore
+    prefer_initializing_formals: ignore
+    sort_pub_dependencies: ignore
+    use_setters_to_change_properties: ignore
+    sort_unnamed_constructors_first: ignore
+    
+    
