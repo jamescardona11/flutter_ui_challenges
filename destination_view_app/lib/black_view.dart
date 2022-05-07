@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:im_stepper/stepper.dart';
 
+import 'widgets/my_appbar.dart';
+
 class BlackViewPage extends StatelessWidget {
   /// default constructor
   const BlackViewPage({
@@ -11,37 +13,7 @@ class BlackViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.grey,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.share,
-              color: Colors.grey,
-            ),
-          ),
-          Icon(
-            Icons.favorite_border,
-            color: Colors.grey,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20, left: 8),
-            child: Icon(
-              Icons.more_horiz,
-              color: Colors.grey,
-            ),
-          ),
-        ],
-      ),
+      appBar: myappbar(context, false),
       backgroundColor: Color(0xff021522),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
