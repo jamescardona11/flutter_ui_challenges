@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'black_view.dart';
 import 'widgets/my_appbar.dart';
 
 class FullScreenPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class FullScreenPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: myappbar(context, true, Colors.white),
+      appBar: myappbar(context, false, Colors.white),
       body: Stack(
         children: [
           Container(
@@ -38,7 +39,16 @@ class FullScreenPage extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: ((context, animation, _) {
+                        return BlackViewPage();
+                      }),
+                      opaque: false,
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue.withOpacity(0.5),
                   fixedSize: const Size(100, 100),
