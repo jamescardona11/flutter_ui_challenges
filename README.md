@@ -15,13 +15,24 @@
 
 | Project #7                                                  | Project #8                                                         |
 | :---------------------------------------------------------- | :----------------------------------------------------------------- |
-| [Plants-UI][plants]                                         | [Navigator Bar][navigator]                                         |
+| [Plants-UI][plants]                                         | [Navigator Bar][simple_navigation_bar]                                         |
 | <img src="plants_project/preview/preview.gif" width="225"/> | <img src="simple_navigation_bar/preview/preview.gif" width="225"/> |
 
 | Project #9                                                | Project #10                                                    |
 | :-------------------------------------------------------- | :------------------------------------------------------------- |
-| [Destination][navigator]                                  | [---][---]                                                     |
-| <img src="destination_view_app/preview.gif" width="225"/> | <img src="simple_navigation_bar/preview/preview" width="225"/> |
+| [Destination][destination]                                  | [AwesomeCarouse][awesomeCarousel]                               |
+| <img src="destination_view_app/preview.gif" width="225"/> | <img src="awesome_carousel/preview.gif" width="225"/> |
+
+| Project #11                                                | Project #12                                                    |
+| :-------------------------------------------------------- | :------------------------------------------------------------- |
+| [BubbleLoading][bubbleLoading]                                  | [ListCardAnimation][listCardAnimation]                               |
+| <img src="bubble_loading/preview.gif" width="225"/> | <img src="list_card_animation/preview.gif" width="225"/> |
+
+
+| Project #13                                                | Project #                                                    |
+| :-------------------------------------------------------- | :------------------------------------------------------------- |
+| [StoryCardConcept][storyCardConcept]                                  | [][]                               |
+| <img src="story_card_concept/preview.png" width="225"/> | <img src="list_card_animation/preview" width="225"/> |
 
 [//]: #Projects
 [chat-ui]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/chat_ui_flutter
@@ -31,4 +42,12 @@
 [todo]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/todo_app_rp
 [course-app]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/course_ui_app
 [plants]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/plants_project
-[navigator]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/destination_view_app
+[destination]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/destination_view_app
+[simple_navigation_bar]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/simple_navigation_bar
+
+
+[awesomeCarousel]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/awesome_carousel
+[bubbleLoading]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/bubble_loading
+[fabMenu]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/fab_menu_challenge
+[listCardAnimation]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/list_card_animation
+[storyCardConcept]: https://github.com/jamescardona11/flutter_ui_challenges/tree/master/story_card_concept
