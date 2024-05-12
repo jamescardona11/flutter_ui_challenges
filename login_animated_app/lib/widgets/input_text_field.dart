@@ -7,9 +7,9 @@ class InputTextField extends StatelessWidget {
   final bool obscureText;
 
   const InputTextField({
-    Key key,
-    @required this.hint,
-    @required this.icon,
+    Key? key,
+    required this.hint,
+    required this.icon,
     this.obscureText = false,
   }) : super(key: key);
 

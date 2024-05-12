@@ -10,10 +10,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
-  AnimationController _animationControllerOpacity;
-  Animation<double> _opacity;
-  AnimationController _animationControllerColor;
-  Animation<Color> _animatedColor;
+  late final AnimationController _animationControllerOpacity;
+  late final Animation<double> _opacity;
+  late final AnimationController _animationControllerColor;
+  late final Animation<Color?> _animatedColor;
   final Duration duration = Duration(milliseconds: 1000);
   final Duration positionDuration = Duration(milliseconds: 300);
 
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   }
                 },
                 child: SplashLayout(
-                  colorBackground: _animatedColor.value,
+                  colorBackground: _animatedColor.value!,
                   isOpenSignIn: openSignIn,
                   getStartedPress: () {
                     openSignInPosition.value = true;
@@ -75,10 +75,14 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 builder: (_, openSignUp, child) {
                   return AnimatedPositioned(
                     duration: positionDuration,
-                    bottom: openSignIn ? openSignUp ? 20 : 0 : -size.height * 0.65,
+                    bottom: openSignIn
+                        ? openSignUp
+                            ? 20
+                            : 0
+                        : -size.height * 0.65,
                     left: openSignUp ? 25 : 0,
                     right: openSignUp ? 25 : 0,
-                    child: child,
+                    child: child!,
                   );
                 },
                 child: FadeTransition(

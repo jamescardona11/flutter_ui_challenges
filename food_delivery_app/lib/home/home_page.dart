@@ -105,8 +105,8 @@ class _BottomItemList extends StatelessWidget {
   final FoodModel model;
 
   const _BottomItemList({
-    Key key,
-    @required this.model,
+    Key? key,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -162,8 +162,8 @@ class _TopViewPagerItems extends StatelessWidget {
   final FoodModel model;
 
   const _TopViewPagerItems({
-    Key key,
-    @required this.model,
+    Key? key,
+    required this.model,
   }) : super(key: key);
 
   @override

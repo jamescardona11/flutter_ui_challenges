@@ -8,9 +8,9 @@ class SignInLayout extends StatelessWidget {
   final VoidCallback loginOnPress, newAccountOnPress;
 
   const SignInLayout({
-    Key key,
-    @required this.loginOnPress,
-    @required this.newAccountOnPress,
+    Key? key,
+    required this.loginOnPress,
+    required this.newAccountOnPress,
   }) : super(key: key);
 
   @override

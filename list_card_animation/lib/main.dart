@@ -1,6 +1,3 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:list_card_animation/data.dart';
 
@@ -31,9 +28,7 @@ class CardsPage extends StatelessWidget {
               color: Colors.black87,
             ),
           ),
-          leading: IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () => Navigator.of(context).maybePop()),
+          leading: IconButton(icon: Icon(Icons.menu), onPressed: () => Navigator.of(context).maybePop()),
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black87),
           backgroundColor: Colors.white,
@@ -99,8 +94,7 @@ class CardBodyWidget extends StatefulWidget {
   State<CardBodyWidget> createState() => _CardBodyWidgetState();
 }
 
-class _CardBodyWidgetState extends State<CardBodyWidget>
-    with TickerProviderStateMixin {
+class _CardBodyWidgetState extends State<CardBodyWidget> with TickerProviderStateMixin {
   bool _selectedMode = false;
   int? _selectedIndex;
   late AnimationController animationControllerSelection;
@@ -115,8 +109,7 @@ class _CardBodyWidgetState extends State<CardBodyWidget>
       duration: const Duration(milliseconds: 880),
     );
 
-    animationControllerMovement = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
+    animationControllerMovement = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
 
     super.initState();
   }
@@ -291,12 +284,10 @@ class Card3DItem extends StatelessWidget {
       right: 0,
       top: height + -depth * height / 2 * percent - bottomMargin,
       child: Opacity(
-        //TODO Change this
         opacity: verticalFactor == 0 ? 1 : 1.0 - animation.value,
         child: Hero(
           tag: card.title,
-          flightShuttleBuilder: (context, animation, flipDirection,
-              fromHeroContext, toHeroContext) {
+          flightShuttleBuilder: (context, animation, flipDirection, fromHeroContext, toHeroContext) {
             Widget current;
             if (flipDirection == HeroFlightDirection.push) {
               current = toHeroContext.widget;
@@ -307,12 +298,9 @@ class Card3DItem extends StatelessWidget {
             return AnimatedBuilder(
               animation: animation,
               builder: (context, snapshot) {
-                final newValue = lerpDouble(0.0, 2 * pi, animation.value)!;
                 return Transform(
                   alignment: Alignment.center,
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.01)
-                    ..rotateX(newValue),
+                  transform: Matrix4.identity()..setEntry(3, 2, 0.01),
                   child: current,
                 );
               },
@@ -324,9 +312,7 @@ class Card3DItem extends StatelessWidget {
               ..setEntry(3, 2, 0.001)
               ..translate(
                 0.0,
-                verticalFactor *
-                    animation.value *
-                    MediaQuery.of(context).size.height,
+                verticalFactor * animation.value * MediaQuery.of(context).size.height,
                 depth * depthFactor,
               ),
             child: InkWell(

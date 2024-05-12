@@ -8,10 +8,10 @@ class SplashLayout extends StatelessWidget {
   final VoidCallback getStartedPress;
 
   const SplashLayout({
-    Key key,
-    @required this.colorBackground,
-    @required this.isOpenSignIn,
-    this.getStartedPress,
+    Key? key,
+    required this.colorBackground,
+    required this.isOpenSignIn,
+    required this.getStartedPress,
   }) : super(key: key);
 
   @override

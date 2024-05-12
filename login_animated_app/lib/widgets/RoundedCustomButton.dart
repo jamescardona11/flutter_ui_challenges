@@ -8,12 +8,12 @@ class RoundedCustomButton extends StatelessWidget {
   final VoidCallback onPress;
 
   const RoundedCustomButton({
-    Key key,
+    Key? key,
     this.width = 250,
     this.height = 55,
     this.filled = true,
     this.content = 'Press me',
-    @required this.onPress,
+    required this.onPress,
   }) : super(key: key);
 
   @override

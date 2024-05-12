@@ -8,9 +8,9 @@ class SignUpLayout extends StatelessWidget {
   final VoidCallback createOnPress, backOnPress;
 
   const SignUpLayout({
-    Key key,
-    @required this.createOnPress,
-    @required this.backOnPress,
+    Key? key,
+    required this.createOnPress,
+    required this.backOnPress,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

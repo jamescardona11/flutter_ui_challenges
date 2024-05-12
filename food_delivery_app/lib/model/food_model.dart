@@ -8,13 +8,13 @@ class FoodModel {
   final String imgPath;
 
   FoodModel({
-    this.name,
-    this.price,
-    this.weight,
-    this.calory,
-    this.protein,
-    this.item,
-    this.imgPath,
+    required this.name,
+    required this.price,
+    required this.weight,
+    required this.calory,
+    required this.protein,
+    required this.item,
+    required this.imgPath,
   });
 
   String get priceTxt {

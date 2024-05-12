@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/consts.dart';
 
@@ -6,7 +7,7 @@ class LeftBarLayout extends StatefulWidget {
   final double widthbar;
 
   LeftBarLayout({
-    Key key,
+    Key? key,
     this.widthbar = 70,
   }) : super(key: key);
 
@@ -15,9 +16,9 @@ class LeftBarLayout extends StatefulWidget {
 }
 
 class _LeftBarLayoutState extends State<LeftBarLayout> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<AlignmentGeometry> _alignmentAnimation;
-  Tween<AlignmentGeometry> _alignmentTween;
+  late final AnimationController _animationController;
+  late final Animation<AlignmentGeometry> _alignmentAnimation;
+  late final Tween<AlignmentGeometry> _alignmentTween;
 
   final List<String> elements = ['Thai', 'Beef', 'Chicken', 'Fresh'];
   final selectedIndex = ValueNotifier<int>(0);
@@ -39,7 +40,7 @@ class _LeftBarLayoutState extends State<LeftBarLayout> with SingleTickerProvider
 
   @override
   void dispose() {
-    _animationController?.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -137,7 +138,7 @@ class _LeftBarLayoutState extends State<LeftBarLayout> with SingleTickerProvider
     return Alignment(1, -0.6 + position * delta);
   }
 
-  void _initAnimationAndStart(Alignment fromAlign, Alignment toAlign) {
+  void _initAnimationAndStart(AlignmentGeometry fromAlign, Alignment toAlign) {
     _alignmentTween.begin = fromAlign;
     _alignmentTween.end = toAlign;
     _animationController.reset();
@@ -147,11 +148,11 @@ class _LeftBarLayoutState extends State<LeftBarLayout> with SingleTickerProvider
 
 class _ItemText extends StatelessWidget {
   const _ItemText({
-    Key key,
-    @required this.element,
-    @required this.selectedIndex,
-    this.size,
-    this.onPress,
+    Key? key,
+    required this.element,
+    required this.selectedIndex,
+    required this.size,
+    required this.onPress,
   }) : super(key: key);
 
   final String element;
@@ -188,8 +189,8 @@ class _ItemText extends StatelessWidget {
 
 class _BottomMenu extends StatelessWidget {
   const _BottomMenu({
-    Key key,
-    @required this.size,
+    Key? key,
+    required this.size,
   }) : super(key: key);
 
   final double size;
@@ -213,8 +214,8 @@ class _BottomMenu extends StatelessWidget {
 
 class ImageTop extends StatelessWidget {
   const ImageTop({
-    Key key,
-    @required this.width,
+    Key? key,
+    required this.width,
   }) : super(key: key);
 
   final double width;
