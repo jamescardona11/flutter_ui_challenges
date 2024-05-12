@@ -11,47 +11,47 @@ flutter run
 
 ## Screenshots
 
-### AR Social Intro
- <img src="ar_social_intro/screenshot.gif"/> 
+### [AR Social Intro][ar_social_intro]
+ <img src="ar_social_intro/preview.gif"/> 
 
-### ListCardAnimation
-<img src="list_card_animation/preview.gif" /> 
+### [ListCardAnimation][listCardAnimation]
+<img src="list_card_animation/preview2.gif" /> 
 
-### BubbleLoading
-<img src="bubble_loading/preview.gif" />
+### [BubbleLoading][bubbleLoading]
+<img src="bubble_loading/preview2.gif" />
 
-### StoryCardConcept
+### [StoryCardConcept][storyCardConcept]
 <img src="story_card_concept/preview.gif" /> 
 
-### AwesomeCarouse
-<img src="awesome_carousel/preview.gif" /> 
+### [AwesomeCarouse][awesomeCarousel]
+<img src="awesome_carousel/preview2.gif" /> 
 
-### Destination Concept
-<img src="destination_view_app/preview.gif" />
+### [Destination Concept][destination]
+<img src="destination_view_app/preview2.gif" />
 
-### LoginUI
-<img src="login_animated_app/gif/preview.gif" /> 
+### [LoginUI][loginui]
+<img src="login_animated_app/preview.gif" /> 
 
-### ChatUI
-<img src="chat_ui_flutter/preview/preview.gif" />  
+### [ChatUI][chatui]
+<img src="chat_ui_flutter/preview.gif" />  
 
-### Drawing App 
-<img src="custom_painting_app/preview/preview.gif" />
+### [Drawing App][drawingapp]
+<img src="custom_painting_app/preview.gif" />
 
-### ToDo
-<img src="todo_app_rp/preview/preview.gif" />
+### [ToDo Page][todo]
+<img src="todo_app_rp/preview.gif" />
 
-### Course Page
-<img src="course_ui_app/preview/preview.gif" />
+### [Course Page][courseapp]
+<img src="course_ui_app/preview.gif" />
 
-### PlantsUI
-<img src="plants_project/preview/preview.gif" />
+### [PlantsUI Page][plants]
+<img src="plants_project/preview.gif" />
 
-### Navigator Bar
-<img src="simple_navigation_bar/preview/preview.gif" />
+### [Navigator Bar][simple_navigation_bar]
+<img src="simple_navigation_bar/preview.gif" />
 
-### FoodDelivery
-<img src="food_delivery_app/preview/preview.gif" />
+### [FoodDelivery][fooddelivery] 
+<img src="food_delivery_app/preview.gif" />
 
 
 ## Links
