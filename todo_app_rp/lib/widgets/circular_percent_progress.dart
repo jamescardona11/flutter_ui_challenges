@@ -1,8 +1,6 @@
 import 'dart:math' as math;
-import 'dart:ui';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class CircularPercent extends StatelessWidget {
   final double percent;
@@ -10,7 +8,7 @@ class CircularPercent extends StatelessWidget {
   final double size;
 
   const CircularPercent({
-    @required this.percent,
+    required this.percent,
     this.primaryColor = Colors.blueAccent,
     this.size = 50.0,
   });
@@ -50,7 +48,7 @@ class _MyRadialProgress extends CustomPainter {
   final double percent;
   final Color primaryColor;
 
-  _MyRadialProgress({this.percent, this.primaryColor});
+  _MyRadialProgress({required this.percent, required this.primaryColor});
 
   @override
   void paint(Canvas canvas, Size size) {

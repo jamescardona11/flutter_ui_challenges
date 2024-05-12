@@ -17,7 +17,7 @@ class CircularButtonWidget extends StatelessWidget {
       onPressed: () {},
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
-        primary: greenDarkPlantsColor,
+        foregroundColor: greenDarkPlantsColor,
       ),
       child: SizedBox(
         width: 50,

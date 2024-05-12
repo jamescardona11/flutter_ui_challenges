@@ -24,7 +24,7 @@ class MyListPage extends StatelessWidget {
         child: Column(
           children: [
             _CustomAppBar(username: username),
-            const TitleWidget(title: 'My List'),
+            TitleWidget(title: 'My List'),
             _DatePicker(),
             Expanded(child: _BottomContainer()),
           ],
@@ -37,8 +37,8 @@ class MyListPage extends StatelessWidget {
 
 class _CustomAppBar extends StatelessWidget {
   const _CustomAppBar({
-    Key key,
-    @required this.username,
+    Key? key,
+    required this.username,
   }) : super(key: key);
 
   final String username;
@@ -147,8 +147,8 @@ class _MyListItem extends StatelessWidget {
   final ItemList itemList;
 
   const _MyListItem({
-    Key key,
-    @required this.itemList,
+    Key? key,
+    required this.itemList,
   }) : super(key: key);
 
   @override
@@ -214,9 +214,9 @@ class _MyListItem extends StatelessWidget {
 
 class _ChipTask extends StatelessWidget {
   const _ChipTask({
-    Key key,
-    @required this.text,
-    @required this.color,
+    Key? key,
+    required this.text,
+    required this.color,
   }) : super(key: key);
 
   final String text;

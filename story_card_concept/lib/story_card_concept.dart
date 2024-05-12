@@ -84,11 +84,11 @@ class _StoryCardConceptPageState extends State<StoryCardConceptPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text("Favourite",
+                        const Text("Favorite",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 46.0,
@@ -96,7 +96,7 @@ class _StoryCardConceptPageState extends State<StoryCardConceptPage> {
                               letterSpacing: 1.0,
                             )),
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.keyboard_option_key,
                             size: 12.0,
                             color: Colors.white,
@@ -117,18 +117,15 @@ class _StoryCardConceptPageState extends State<StoryCardConceptPage> {
                           ),
                           child: Center(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 22.0, vertical: 6.0),
-                              child: Text("Latest",
-                                  style: TextStyle(color: Colors.white)),
+                              padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 6.0),
+                              child: Text("Latest", style: TextStyle(color: Colors.white)),
                             ),
                           ),
                         ),
                         SizedBox(
                           width: 15.0,
                         ),
-                        Text("9+ Stories",
-                            style: TextStyle(color: Colors.blueAccent))
+                        Text("9+ Stories", style: TextStyle(color: Colors.blueAccent))
                       ],
                     ),
                   ),
@@ -187,11 +184,7 @@ class CardScrollWidget extends StatelessWidget {
             var delta = i - currentPage;
             bool isOnRight = delta > 0;
 
-            var start = padding +
-                max(
-                    primaryCardLeft -
-                        horizontalInset * -delta * (isOnRight ? 15 : 1),
-                    0.0);
+            var start = padding + max(primaryCardLeft - horizontalInset * -delta * (isOnRight ? 15 : 1), 0.0);
 
             var cardItem = Positioned.directional(
               top: padding + verticalInset * max(-delta, 0.0),
@@ -201,12 +194,8 @@ class CardScrollWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.0),
                 child: Container(
-                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                    BoxShadow(
-                        color: Colors.black12,
-                        offset: Offset(3.0, 6.0),
-                        blurRadius: 10.0)
-                  ]),
+                  decoration: BoxDecoration(
+                      color: Colors.white, boxShadow: [BoxShadow(color: Colors.black12, offset: Offset(3.0, 6.0), blurRadius: 10.0)]),
                   child: AspectRatio(
                     aspectRatio: cardAspectRatio,
                     child: Stack(
@@ -220,29 +209,19 @@ class CardScrollWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 8.0),
+                                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                                 child: Text('Title $i',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 25.0,
-                                        fontFamily: "SF-Pro-Text-Regular")),
+                                    style: TextStyle(color: Colors.white, fontSize: 25.0, fontFamily: "SF-Pro-Text-Regular")),
                               ),
                               SizedBox(
                                 height: 10.0,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 12.0, bottom: 12.0),
+                                padding: const EdgeInsets.only(left: 12.0, bottom: 12.0),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 22.0, vertical: 6.0),
-                                  decoration: BoxDecoration(
-                                      color: Colors.blueAccent,
-                                      borderRadius:
-                                          BorderRadius.circular(20.0)),
-                                  child: Text("Read Later",
-                                      style: TextStyle(color: Colors.white)),
+                                  padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 6.0),
+                                  decoration: BoxDecoration(color: Colors.blueAccent, borderRadius: BorderRadius.circular(20.0)),
+                                  child: Text("Read Later", style: TextStyle(color: Colors.white)),
                                 ),
                               )
                             ],

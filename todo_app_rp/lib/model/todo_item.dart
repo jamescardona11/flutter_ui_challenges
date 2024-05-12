@@ -9,11 +9,11 @@ class ToDoItem {
   final Color color;
 
   const ToDoItem({
-    @required this.name,
-    @required this.details,
-    @required this.remainder,
-    @required this.time,
-    @required this.detailTime,
-    @required this.color,
+    required this.name,
+    required this.details,
+    required this.remainder,
+    required this.time,
+    required this.detailTime,
+    required this.color,
   });
 }

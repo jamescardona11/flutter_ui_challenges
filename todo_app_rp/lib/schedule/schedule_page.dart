@@ -10,9 +10,9 @@ class SchedulePage extends StatelessWidget {
   final List<ToDoItem> todoItems;
 
   const SchedulePage({
-    Key key,
-    @required this.day,
-    @required this.todoItems,
+    Key? key,
+    required this.day,
+    required this.todoItems,
   }) : super(key: key);
 
   @override
@@ -35,9 +35,9 @@ class SchedulePage extends StatelessWidget {
 
 class _CustomHeader extends StatelessWidget {
   const _CustomHeader({
-    Key key,
-    @required this.upcoming,
-    @required this.day,
+    Key? key,
+    required this.upcoming,
+    required this.day,
   }) : super(key: key);
 
   final int upcoming;
@@ -76,8 +76,8 @@ class _TimeLine extends StatelessWidget {
   final List<ToDoItem> todoItems;
 
   const _TimeLine({
-    Key key,
-    @required this.todoItems,
+    Key? key,
+    required this.todoItems,
   }) : super(key: key);
 
   @override
@@ -102,8 +102,8 @@ class _TodoItemWidget extends StatelessWidget {
   final ToDoItem toDoItem;
 
   const _TodoItemWidget({
-    Key key,
-    @required this.toDoItem,
+    Key? key,
+    required this.toDoItem,
   }) : super(key: key);
 
   @override

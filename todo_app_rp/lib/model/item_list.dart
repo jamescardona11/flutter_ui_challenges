@@ -8,11 +8,11 @@ class ItemList {
   final Color color;
 
   const ItemList({
-    @required this.name,
-    @required this.numberOfTask,
-    @required this.completeTask,
-    @required this.icon,
-    @required this.color,
+    required this.name,
+    required this.numberOfTask,
+    required this.completeTask,
+    required this.icon,
+    required this.color,
   });
 
   String get itemsTxt {

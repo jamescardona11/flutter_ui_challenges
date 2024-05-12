@@ -7,9 +7,9 @@ class DayItem extends StatelessWidget {
   final int day;
 
   const DayItem({
-    Key key,
+    Key? key,
     this.selectedItem = false,
-    @required this.day,
+    required this.day,
   }) : super(key: key);
 
   @override
