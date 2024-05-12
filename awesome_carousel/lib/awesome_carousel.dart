@@ -26,7 +26,7 @@ class _AwesomeCarouselPageState extends State<AwesomeCarouselPage> {
         alignment: Alignment.center,
         children: [
           AnimatedSwitcher(
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             child: Container(
               key: ValueKey<String>(tokList[currentPage]),
               decoration: BoxDecoration(
@@ -56,8 +56,7 @@ class _AwesomeCarouselPageState extends State<AwesomeCarouselPage> {
               },
               itemCount: tokList.length,
               itemBuilder: ((_, index) {
-                return FractionallySizedBox(
-                    widthFactor: 0.8, child: BasicCard(image: tokList[index]));
+                return FractionallySizedBox(widthFactor: 0.8, child: BasicCard(image: tokList[index]));
               }),
             ),
           )

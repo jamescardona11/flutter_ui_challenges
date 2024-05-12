@@ -8,10 +8,10 @@ class MessageModel {
   final bool unread;
 
   MessageModel({
-    this.sender,
-    this.time,
-    this.text,
-    this.isLiked,
-    this.unread,
+    required this.sender,
+    required this.time,
+    required this.text,
+    this.isLiked = false,
+    this.unread = false,
   });
 }

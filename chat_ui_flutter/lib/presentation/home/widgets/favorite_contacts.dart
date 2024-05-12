@@ -7,8 +7,8 @@ class FavoriteContacts extends StatelessWidget {
   final List<UserModel> favorite;
 
   const FavoriteContacts({
-    Key key,
-    @required this.favorite,
+    Key? key,
+    required this.favorite,
   }) : super(key: key);
 
   @override

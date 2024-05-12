@@ -1,7 +1,7 @@
 import 'package:chat_ui_flutter/mock_data.dart';
-import 'package:chat_ui_flutter/presentation/home/widgets/recent_chats.dart';
 import 'package:chat_ui_flutter/presentation/home/widgets/category_selector.dart';
 import 'package:chat_ui_flutter/presentation/home/widgets/favorite_contacts.dart';
+import 'package:chat_ui_flutter/presentation/home/widgets/recent_chats.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
+                color: Color(0xFFFEF9EB),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),

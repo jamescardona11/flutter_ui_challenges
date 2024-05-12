@@ -19,8 +19,7 @@ class LoadingScreenPage extends StatefulWidget {
   State<LoadingScreenPage> createState() => _LoadingScreenPageState();
 }
 
-class _LoadingScreenPageState extends State<LoadingScreenPage>
-    with SingleTickerProviderStateMixin {
+class _LoadingScreenPageState extends State<LoadingScreenPage> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> progressAnimation;
   late Animation<double> cloudOutAnimation;
@@ -104,7 +103,7 @@ class _InitialViewState extends State<InitialView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
+            const Expanded(
               flex: 3,
               child: Text(
                 'Cloud Storage',
@@ -132,8 +131,8 @@ class _InitialViewState extends State<InitialView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(height: 30),
-                      Text(
+                      const SizedBox(height: 30),
+                      const Text(
                         'uploading files',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -180,7 +179,7 @@ class _InitialViewState extends State<InitialView> {
                       ),
                     );
                   },
-                  child: Column(
+                  child: const Column(
                     children: [
                       Text(
                         'last backkup',
@@ -211,7 +210,7 @@ class _InitialViewState extends State<InitialView> {
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             backgroundColor: mainColor,
-                            primary: Colors.white,
+                            foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -223,21 +222,20 @@ class _InitialViewState extends State<InitialView> {
 
                             widget.onAnimationStarted();
                           },
-                          child: Text('Create Backupd'),
+                          child: const Text('Create Backupd'),
                         ),
                       )
                     : OutlinedButton(
                         onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 15),
-                          child: Text('Button'),
-                        ),
                         style: OutlinedButton.styleFrom(
-                          primary: mainColor,
+                          backgroundColor: mainColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
+                          child: Text('Button'),
                         ),
                       ),
               ),
@@ -272,17 +270,7 @@ class CloudView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final query = MediaQuery.of(context).size;
-    final topPosition = query.height * 0.5;
 
-    // return Positioned(
-    //   left: 0,
-    //   right: 0,
-    //   top: 180,
-    //   bottom: query.height * 0.4,
-    //   child: Container(
-    //     color: Colors.red,
-    //   ),
-    // );
     return AnimatedBuilder(
       animation: Listenable.merge([progressAnimation, cloudOutAnimation]),
       builder: (_, child) {
@@ -303,15 +291,6 @@ class CloudView extends StatelessWidget {
               animation: progressAnimation,
               particles: particles,
             ),
-            // child: CustomPaint(
-            //   painter: CloudPainter2(
-            //     radius1: radius1,
-            //     radius3: radius3,
-            //     radius2: radius2,
-            //     animation: progressAnimation,
-            //     particles: particles,
-            //   ),
-            // ),
           ),
         );
       },
@@ -331,7 +310,7 @@ class ProgressContainer extends AnimatedWidget {
   Widget build(BuildContext context) {
     return Text(
       '${(value * 100).toStringAsFixed(0)}%',
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 17,
         color: Colors.black87,
         fontWeight: FontWeight.w300,
@@ -425,19 +404,12 @@ class CloudPainter extends CustomPainter {
 
     if (delta != 1.0) {
       particles.forEach((p) {
-        if (p.initialPosition == 0)
-          print(size.height * 0.5 * delta -
-              p.speed * (1 - delta) +
-              p.initialPosition * delta +
-              70);
+        if (p.initialPosition == 0) print(size.height * 0.5 * delta - p.speed * (1 - delta) + p.initialPosition * delta + 70);
 
         final paint = Paint()..color = p.color;
         final off = Offset(
           size.width / 2 + p.direction * (1 - delta),
-          size.height * 0.5 * delta -
-              p.speed * (1 - delta) +
-              p.initialPosition * delta +
-              70,
+          size.height * 0.5 * delta - p.speed * (1 - delta) + p.initialPosition * delta + 70,
         );
 
         if (off.dy < 233) {
@@ -487,9 +459,7 @@ class CloudPainter2 extends CustomPainter {
       final paint = Paint()..color = p.color;
       final off = Offset(
         size.width / 2 + p.direction * (1 - delta),
-        size.height * 0.5 * delta -
-            p.speed * (1 - delta) +
-            p.initialPosition * delta,
+        size.height * 0.5 * delta - p.speed * (1 - delta) + p.initialPosition * delta,
       );
       canvas.drawCircle(
         off,

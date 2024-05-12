@@ -4,9 +4,9 @@ class UserModel {
   final String imageUrl;
 
   UserModel({
-    this.id,
-    this.name,
-    this.imageUrl,
+    required this.id,
+    required this.name,
+    required this.imageUrl,
   });
 
   String get firstLetters {

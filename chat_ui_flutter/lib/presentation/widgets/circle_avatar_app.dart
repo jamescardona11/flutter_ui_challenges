@@ -5,9 +5,9 @@ class CircleAvatarApp extends StatelessWidget {
   final nameLetter;
 
   const CircleAvatarApp({
-    Key key,
-    @required this.imageUrl,
-    @required this.nameLetter,
+    Key? key,
+    required this.imageUrl,
+    required this.nameLetter,
   }) : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class CircleAvatarApp extends StatelessWidget {
     return CircleAvatar(
       radius: 30,
       backgroundImage: AssetImage(imageUrl),
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Color(0xFFFEF9EB),
       child: imageUrl.isNotEmpty
           ? null
           : Text(

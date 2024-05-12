@@ -1,6 +1,4 @@
-import 'package:chat_ui_flutter/mock_data.dart';
 import 'package:chat_ui_flutter/models/message_model.dart';
-import 'package:chat_ui_flutter/models/user_model.dart';
 import 'package:chat_ui_flutter/presentation/chat/chat_page.dart';
 import 'package:chat_ui_flutter/presentation/widgets/circle_avatar_app.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +7,8 @@ class RecentChats extends StatelessWidget {
   final List<MessageModel> recentChats;
 
   const RecentChats({
-    Key key,
-    @required this.recentChats,
+    Key? key,
+    required this.recentChats,
   }) : super(key: key);
 
   @override
@@ -32,8 +30,8 @@ class _RecentItemChat extends StatelessWidget {
   final MessageModel chatInfo;
 
   const _RecentItemChat({
-    Key key,
-    @required this.chatInfo,
+    Key? key,
+    required this.chatInfo,
   }) : super(key: key);
 
   @override

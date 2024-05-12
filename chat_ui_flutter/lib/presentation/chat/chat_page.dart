@@ -7,8 +7,8 @@ class ChatPage extends StatefulWidget {
   final UserModel user;
 
   const ChatPage({
-    Key key,
-    @required this.user,
+    Key? key,
+    required this.user,
   }) : super(key: key);
 
   @override
@@ -125,8 +125,8 @@ class _BuildMessageItem extends StatelessWidget {
   final MessageModel message;
 
   _BuildMessageItem({
-    Key key,
-    this.message,
+    Key? key,
+    required this.message,
   }) : super(key: key);
 
   @override
@@ -190,7 +190,7 @@ class _BuildMessageItem extends StatelessWidget {
 
   BoxDecoration isMeDecoration(bool isMe, BuildContext context) {
     return BoxDecoration(
-      color: isMe ? Theme.of(context).accentColor : Color(0xffFFEFEE),
+      color: isMe ? Color(0xFFFEF9EB) : Color(0xffFFEFEE),
       borderRadius: isMe
           ? BorderRadius.only(topLeft: Radius.circular(15), bottomLeft: Radius.circular(15))
           : BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15)),
