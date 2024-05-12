@@ -10,13 +10,13 @@ class Course {
   final List<CourseContent> content;
 
   Course({
-    this.name,
-    this.price,
-    this.discount,
-    this.students,
-    this.rating,
-    this.image,
-    this.content,
+    required this.name,
+    required this.price,
+    required this.discount,
+    required this.students,
+    required this.rating,
+    required this.image,
+    required this.content,
   });
 
   String get finalPrice {

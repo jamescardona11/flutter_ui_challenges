@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:custom_painting_app/consts.dart';
 import 'package:custom_painting_app/my_custom_painter.dart';
 import 'package:flutter/material.dart';
@@ -60,10 +59,10 @@ class _PaintArea extends StatefulWidget {
   final bool clearArea;
 
   const _PaintArea({
-    Key key,
-    @required this.selectedColor,
-    @required this.stroke,
-    @required this.clearArea,
+    Key? key,
+    required this.selectedColor,
+    required this.stroke,
+    required this.clearArea,
   }) : super(key: key);
 
   @override
@@ -109,7 +108,7 @@ class _PaintAreState extends State<_PaintArea> {
     );
   }
 
-  void addPoint(Offset point) {
+  void addPoint(Offset? point) {
     points.value = List<DrawingArea>.from(points.value)
       ..add(DrawingArea(
         point: point,
@@ -132,10 +131,10 @@ class _ActionBarWidget extends StatefulWidget {
   final Function(Color) changeColorValue;
 
   const _ActionBarWidget({
-    Key key,
-    @required this.clearCanvas,
-    @required this.changeSliderValue,
-    @required this.changeColorValue,
+    Key? key,
+    required this.clearCanvas,
+    required this.changeSliderValue,
+    required this.changeColorValue,
   }) : super(key: key);
 
   @override
@@ -196,7 +195,7 @@ class _ActionBarWidgetState extends State<_ActionBarWidget> {
   void myShowDialog() {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (_) => AlertDialog(
         title: const Text('Pick a color!'),
         content: SingleChildScrollView(
           child: BlockPicker(
@@ -209,7 +208,7 @@ class _ActionBarWidgetState extends State<_ActionBarWidget> {
           ),
         ),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: const Text('Close'),
             onPressed: () {
               Navigator.of(context).pop();
@@ -223,7 +222,7 @@ class _ActionBarWidgetState extends State<_ActionBarWidget> {
 
 class _BackgroundWidget extends StatelessWidget {
   const _BackgroundWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

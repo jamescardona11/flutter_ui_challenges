@@ -50,7 +50,7 @@ class FullScreenPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue.withOpacity(0.5),
+                  foregroundColor: Colors.blue.withOpacity(0.5),
                   fixedSize: const Size(100, 100),
                   shape: CircleBorder(),
                 ),

@@ -4,8 +4,8 @@ class CourseContent {
   final bool available;
 
   CourseContent({
-    this.time,
-    this.name,
-    this.available,
+    required this.time,
+    required this.name,
+    required this.available,
   });
 }

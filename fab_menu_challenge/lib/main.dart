@@ -24,9 +24,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AppBar Text'),
+        title: const Text('AppBar Text'),
       ),
-      body: Center(
+      body: const Center(
         child: CircularFABMenuWidget(),
       ),
     );
@@ -34,12 +34,14 @@ class HomePage extends StatelessWidget {
 }
 
 class CircularFABMenuWidget extends StatefulWidget {
+  const CircularFABMenuWidget({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CircularFABMenuWidgetState createState() => _CircularFABMenuWidgetState();
 }
 
-class _CircularFABMenuWidgetState extends State<CircularFABMenuWidget>
-    with SingleTickerProviderStateMixin {
+class _CircularFABMenuWidgetState extends State<CircularFABMenuWidget> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
 
   @override
@@ -124,8 +126,7 @@ class _MenuItem extends StatefulWidget {
   __MenuItemState createState() => __MenuItemState();
 }
 
-class __MenuItemState extends State<_MenuItem>
-    with SingleTickerProviderStateMixin {
+class __MenuItemState extends State<_MenuItem> with SingleTickerProviderStateMixin {
   late Animation<Offset> offsetAnimation;
   late Animation<double> rotationAnimation;
   late Animation<double> scaleAnimation;
@@ -150,9 +151,7 @@ class __MenuItemState extends State<_MenuItem>
             : Offset.fromDirection(getOffset(), scaleAnimation.value * 100),
         child: Transform(
           alignment: Alignment.center,
-          transform:
-              Matrix4.rotationZ(getRadianFromDegree(rotationAnimation.value))
-                ..scale(scaleAnimation.value),
+          transform: Matrix4.rotationZ(getRadianFromDegree(rotationAnimation.value))..scale(scaleAnimation.value),
           child: Container(
             width: widget.size,
             height: widget.size,
@@ -191,30 +190,21 @@ class __MenuItemState extends State<_MenuItem>
     switch (widget.animationDirection) {
       case AnimationDirection.left:
         return TweenSequence<double>([
-          TweenSequenceItem(
-              tween: Tween<double>(begin: 0.0, end: 1.6), weight: 35),
-          TweenSequenceItem(
-              tween: Tween<double>(begin: 1.6, end: 1.0), weight: 65),
+          TweenSequenceItem(tween: Tween<double>(begin: 0.0, end: 1.6), weight: 35),
+          TweenSequenceItem(tween: Tween<double>(begin: 1.6, end: 1.0), weight: 65),
         ]);
       case AnimationDirection.diagonal:
         return TweenSequence<double>([
-          TweenSequenceItem(
-              tween: Tween<double>(begin: 0.0, end: 1.4), weight: 55),
-          TweenSequenceItem(
-              tween: Tween<double>(begin: 1.4, end: 1.0), weight: 45),
+          TweenSequenceItem(tween: Tween<double>(begin: 0.0, end: 1.4), weight: 55),
+          TweenSequenceItem(tween: Tween<double>(begin: 1.4, end: 1.0), weight: 45),
         ]);
       case AnimationDirection.top:
         return TweenSequence<double>([
-          TweenSequenceItem(
-              tween: Tween<double>(begin: 0.0, end: 1.2), weight: 75),
-          TweenSequenceItem(
-              tween: Tween<double>(begin: 1.2, end: 1.0), weight: 25),
+          TweenSequenceItem(tween: Tween<double>(begin: 0.0, end: 1.2), weight: 75),
+          TweenSequenceItem(tween: Tween<double>(begin: 1.2, end: 1.0), weight: 25),
         ]);
       default: //none
-        return TweenSequence([
-          TweenSequenceItem(
-              tween: Tween<double>(begin: 1.0, end: 1.0), weight: 100)
-        ]);
+        return TweenSequence([TweenSequenceItem(tween: Tween<double>(begin: 1.0, end: 1.0), weight: 100)]);
     }
   }
 
