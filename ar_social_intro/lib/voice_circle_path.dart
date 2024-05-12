@@ -14,7 +14,7 @@ class VoiceCirclePath extends CustomPainter {
   ];
 
   final Paint pencilOne = Paint()
-    ..color = Color(0xffE8E8FF)
+    ..color = const Color(0xffE8E8FF)
     ..style = PaintingStyle.fill;
 
   final Paint pencilTwo = Paint()

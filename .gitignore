@@ -53,5 +53,3 @@ app.*.map.json
 **/windows/**
 **/test/**
 *.lock
-
-ar_social_intro/assets/**
