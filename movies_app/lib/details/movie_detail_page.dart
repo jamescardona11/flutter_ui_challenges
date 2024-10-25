@@ -13,11 +13,9 @@ class MovieDetailPage extends StatefulWidget {
   const MovieDetailPage({
     super.key,
     required this.id,
-    required this.isPopular,
   });
 
   final int id;
-  final bool isPopular;
 
   @override
   State<MovieDetailPage> createState() => _MovieDetailPageState();
