@@ -22,7 +22,7 @@ class MovieDetailPage extends StatefulWidget {
 }
 
 class _MovieDetailPageState extends State<MovieDetailPage> {
-  int currentPage = 0;
+  late int currentPage;
   final List<MovieEntity> movies = moviesJSON.map((e) => MovieEntity.fromJson(e)).toList();
   late final PageController controller;
 
@@ -30,6 +30,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     super.initState();
     final index = movies.indexWhere((e) => e.id == widget.id);
+    currentPage = index;
     controller = PageController(initialPage: index);
   }
 
@@ -37,38 +38,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
-      body: TweenAnimationBuilder<double>(
-        tween: Tween(
-          begin: 0.0,
-          end: 1.0,
-        ),
-        duration: const Duration(milliseconds: 500),
-        builder: (context, value, child) {
-          return ShaderMask(
-              blendMode: BlendMode.modulate,
-              shaderCallback: (rect) {
-                return RadialGradient(
-                  radius: value * 5,
-                  colors: const [
-                    Colors.white,
-                    Colors.white,
-                    Colors.transparent,
-                    Colors.transparent,
-                  ],
-                  stops: const [
-                    0.0,
-                    0.5,
-                    0.66,
-                    1.0,
-                  ],
-                  center: const FractionalOffset(
-                    0.95,
-                    0.9,
-                  ),
-                ).createShader(rect);
-              },
-              child: child);
-        },
+      body: _ShaderMaskTransition(
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -100,106 +70,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ),
                     ),
                     const Spacer(),
-                    Container(
-                      width: size.width,
-                      height: 420,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.9),
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 20),
-                          Text(
-                            movie.name,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (movie.year != null) ...[
-                                const FaIcon(
-                                  FontAwesomeIcons.calendar,
-                                  size: 15,
-                                  color: Colors.grey,
-                                ),
-                                const SizedBox(width: 5),
-                                Text(
-                                  movie.year!,
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                              ],
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.language,
-                                size: 15,
-                                color: Colors.grey,
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                movie.language,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                              Text(
-                                (movie.genreIds.firstOrNull ?? '').toString(),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              Text(
-                                (movie.status ?? '').toString(),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: RatingWidget(
-                              rating: movie.rating.toStringAsFixed(2),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Overview',
-                                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                          fontSize: 28,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Expanded(
-                            child: Text(
-                              movie.overview,
-                              textAlign: TextAlign.left,
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontSize: 16,
-                                  ),
-                            ),
-                          ),
-                          Expanded(
-                            child: MarkAsFavoriteButton(
-                              label: 'Save as Favorite',
-                              isFavorite: movie.isFavorite,
-                              onPressed: () {},
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    _MainSection(movie: movie),
                   ],
                 );
               }),
@@ -216,6 +87,175 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _MainSection extends StatelessWidget {
+  const _MainSection({
+    super.key,
+    required this.movie,
+  });
+
+  final MovieEntity movie;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    return Container(
+      width: size.width,
+      height: 420,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.7),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        ),
+      ),
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          Text(
+            movie.name,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: Colors.white,
+                ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (movie.year != null) ...[
+                const FaIcon(
+                  FontAwesomeIcons.calendar,
+                  size: 15,
+                  color: Colors.white,
+                ),
+                const SizedBox(width: 5),
+                Text(
+                  movie.year!,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+              ],
+              const SizedBox(width: 10),
+              const FaIcon(
+                FontAwesomeIcons.language,
+                size: 15,
+                color: Colors.grey,
+              ),
+              const SizedBox(width: 5),
+              Text(
+                movie.language,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
+              Text(
+                (movie.genreIds.firstOrNull ?? '').toString(),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
+              ),
+              Text(
+                (movie.status ?? '').toString(),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: RatingWidget(
+              rating: movie.rating.toStringAsFixed(2),
+            ),
+          ),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Overview',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontSize: 28,
+                          color: Colors.white,
+                        ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Expanded(
+            child: Text(
+              movie.overview,
+              textAlign: TextAlign.left,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+            ),
+          ),
+          Expanded(
+            child: MarkAsFavoriteButton(
+              label: 'Save as Favorite',
+              isFavorite: movie.isFavorite,
+              onPressed: () {},
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ShaderMaskTransition extends StatelessWidget {
+  const _ShaderMaskTransition({
+    super.key,
+    required this.child,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+      tween: Tween(
+        begin: 0.0,
+        end: 1.0,
+      ),
+      duration: const Duration(milliseconds: 500),
+      builder: (context, value, child) {
+        return ShaderMask(
+            blendMode: BlendMode.modulate,
+            shaderCallback: (rect) {
+              return RadialGradient(
+                radius: value * 5,
+                colors: const [
+                  Colors.white,
+                  Colors.white,
+                  Colors.transparent,
+                  Colors.transparent,
+                ],
+                stops: const [
+                  0.0,
+                  0.5,
+                  0.66,
+                  1.0,
+                ],
+                center: const FractionalOffset(
+                  0.95,
+                  0.9,
+                ),
+              ).createShader(rect);
+            },
+            child: child);
+      },
+      child: child,
     );
   }
 }
