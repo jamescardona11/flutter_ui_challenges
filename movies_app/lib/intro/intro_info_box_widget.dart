@@ -50,7 +50,7 @@ class IntroInfoBoxWidget extends StatelessWidget {
                     subs[pageIndex],
                     style: const TextStyle(
                       fontSize: 16,
-                      color: AppColors.primaryColor,
+                      color: Colors.white,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -103,12 +103,12 @@ class IntroInfoBoxWidget extends StatelessWidget {
   }
 
   List<String> get titles => [
-        'Test your Flutter skills with this movie UI challenge',
-        'Developed for aspiring Flutter developers',
+        'Welcome to the Cinematic Universe!',
+        'Lights, Camera, Action!',
       ];
 
   List<String> get subs => [
-        'Explore upcoming movies, popular and search for your favorite',
-        'Create many features for your favorite movies.\nOffline support, Clean Architecture, and more',
+        'Dive into a world of storytelling where every frame tells a tale, and every character has a journey. Explore our latest releases, discover hidden gems, and experience the magic of cinema like never before!',
+        'Get ready to embark on an unforgettable adventure through the silver screen. From thrilling blockbusters to heartwarming dramas, find your next favorite film and let the storytelling begin!',
       ];
 }

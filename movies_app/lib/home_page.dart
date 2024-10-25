@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: MoviesGridViewWidget(movies: movies),
     );
   }
@@ -54,7 +55,7 @@ class MoviesGridViewWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MovieDetailPage(id: index + 1)),
+                MaterialPageRoute(builder: (context) => MovieDetailPage(id: movie.id)),
               );
             },
           ),

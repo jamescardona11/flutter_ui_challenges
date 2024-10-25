@@ -24,7 +24,14 @@ class MovieDetailPage extends StatefulWidget {
 class _MovieDetailPageState extends State<MovieDetailPage> {
   int currentPage = 0;
   final List<MovieEntity> movies = moviesJSON.map((e) => MovieEntity.fromJson(e)).toList();
-  late final PageController controller = PageController(initialPage: widget.id);
+  late final PageController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final index = movies.indexWhere((e) => e.id == widget.id);
+    controller = PageController(initialPage: index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -210,11 +217,5 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         ),
       ),
     );
-  }
-
-  void animatedOnFirstTime() {
-    // Future.delayed(const Duration(milliseconds: 100), () {
-    //   controller.animateTo(170, duration: const Duration(milliseconds: 300), curve: Curves.ease);
-    // });
   }
 }

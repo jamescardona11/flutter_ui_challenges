@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/config/app_colors.dart';
 
 class CachedImage extends StatelessWidget {
   const CachedImage({
@@ -30,7 +29,7 @@ class CachedImage extends StatelessWidget {
         imageUrl: imageUrl,
         placeholder: (context, url) {
           return Container(
-            color: AppColors.primaryColor,
+            color: Colors.white,
           );
         },
         errorWidget: (context, url, error) {

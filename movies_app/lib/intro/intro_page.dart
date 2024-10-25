@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/home_page.dart';
 
-import 'widgets/intro_info_box_widget.dart';
+import 'intro_info_box_widget.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -28,8 +28,9 @@ class _IntroPageState extends State<_IntroPage> {
   int pageIndex = 0;
 
   List<Widget> pages = const [
-    PageViewElement(assetPath: 'assets/images/intro_1.png'),
-    PageViewElement(assetPath: 'assets/images/intro_2.png'),
+    PageViewElement(assetPath: 'assets/intro1.png'),
+    PageViewElement(assetPath: 'assets/intro2.png'),
+    ColoredBox(color: Colors.black, child: SizedBox()),
   ];
 
   @override
@@ -59,14 +60,6 @@ class _IntroPageState extends State<_IntroPage> {
           ),
       ],
     );
-  }
-
-  void changeToSplashPage() {
-    /// We need at least 20ms to change the page to wait the controller is finally ready to use
-    Future.delayed(const Duration(milliseconds: 20), () {
-      controller.jumpToPage(2);
-      // delayGoToHome();
-    });
   }
 
   void goToHome() {
