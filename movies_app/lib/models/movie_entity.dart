@@ -27,35 +27,17 @@ class MovieEntity {
 
   String? get year => releaseDate?.split('-').firstOrNull.toString();
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'name': name,
-      'imageUrl': imageUrl,
-      'genreIds': genreIds,
-      'overview': overview,
-      'popularity': popularity,
-      'releaseDate': releaseDate,
-      'language': language,
-      'rating': rating,
-      'status': status,
-      'isFavorite': isFavorite,
-    };
-  }
-
-  factory MovieEntity.fromMap(Map<String, dynamic> map) {
-    return MovieEntity(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      imageUrl: map['imageUrl'] as String,
-      genreIds: List<int>.from((map['genreIds'] as List<int>)),
-      overview: map['overview'] as String,
-      popularity: map['popularity'] != null ? map['popularity'] as double : null,
-      releaseDate: map['releaseDate'] != null ? map['releaseDate'] as String : null,
-      language: map['language'] as String,
-      rating: map['rating'] as double,
-      status: map['status'] != null ? map['status'] as String : null,
-      isFavorite: map['isFavorite'] as bool,
-    );
-  }
+  static MovieEntity fromJson(Map<String, dynamic> json) => MovieEntity(
+        id: (json['id'] as num).toInt(),
+        name: json['original_title'] as String,
+        imageUrl: json['poster_path'] as String,
+        genreIds: (json['genres'] as List<dynamic>?)?.map((e) => (e as num).toInt()).toList() ?? const [],
+        overview: json['overview'] as String,
+        releaseDate: json['release_date'] as String?,
+        language: json['original_language'] as String,
+        rating: (json['vote_average'] as num).toDouble(),
+        status: json['status'] as String?,
+        popularity: (json['popularity'] as num?)?.toDouble(),
+        isFavorite: json['isFavorite'] as bool? ?? false,
+      );
 }
