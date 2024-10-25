@@ -25,6 +25,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   late int currentPage;
   final List<MovieEntity> movies = moviesJSON.map((e) => MovieEntity.fromJson(e)).toList();
   late final PageController controller;
+  bool enabledAnimation = false;
 
   @override
   void initState() {
@@ -32,6 +33,13 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     final index = movies.indexWhere((e) => e.id == widget.id);
     currentPage = index;
     controller = PageController(initialPage: index);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Future.delayed(const Duration(milliseconds: 800), () {
+        enabledAnimation = true;
+        setState(() {});
+      });
+    });
   }
 
   @override
@@ -55,23 +63,28 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 });
               },
               itemCount: movies.length,
-              itemBuilder: ((_, index) {
+              itemBuilder: ((context, index) {
                 final movie = movies[index];
 
-                return Column(
-                  children: [
-                    const SizedBox(height: 100),
-                    SizedBox(
-                      height: 350,
-                      width: size.width * 0.65,
-                      child: BasicCard(
-                        id: movie.id.toString(),
-                        imageUrl: movie.imageUrl,
+                return _WidgetToAnimatedPageViewElements(
+                  controller: controller,
+                  index: index,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 100),
+                      SizedBox(
+                        height: 350,
+                        width: size.width * 0.65,
+                        child: BasicCard(
+                          id: movie.id.toString(),
+                          imageUrl: movie.imageUrl,
+                          enabledAnimation: enabledAnimation,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    _MainSection(movie: movie),
-                  ],
+                      const Spacer(),
+                      _MainSection(movie: movie),
+                    ],
+                  ),
                 );
               }),
             ),
@@ -87,6 +100,41 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _WidgetToAnimatedPageViewElements extends StatelessWidget {
+  const _WidgetToAnimatedPageViewElements({
+    super.key,
+    required this.controller,
+    required this.index,
+    required this.child,
+  });
+
+  final PageController controller;
+  final int index;
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        double value = 1.0;
+        if (controller.position.haveDimensions) {
+          value = controller.page! - index;
+          value = (1 - (value.abs() * 0.5)).clamp(0.0, 1.0);
+        }
+
+        return Transform.scale(
+          scale: Curves.easeOut.transform(value),
+          child: Opacity(
+            opacity: Curves.easeOut.transform(value),
+            child: child,
+          ),
+        );
+      },
+      child: child,
     );
   }
 }
@@ -228,7 +276,7 @@ class _ShaderMaskTransition extends StatelessWidget {
         begin: 0.0,
         end: 1.0,
       ),
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 800),
       builder: (context, value, child) {
         return ShaderMask(
             blendMode: BlendMode.modulate,

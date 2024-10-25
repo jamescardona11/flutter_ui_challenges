@@ -9,6 +9,7 @@ class BasicCard extends StatelessWidget {
     this.width,
     this.height,
     required this.id,
+    required this.enabledAnimation,
   });
 
   final double? width;
@@ -16,18 +17,21 @@ class BasicCard extends StatelessWidget {
   final String imageUrl;
   final Color color;
   final String id;
-
+  final bool enabledAnimation;
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: id,
-      child: PhysicalModel(
-        elevation: 10,
-        color: color,
-        borderRadius: BorderRadius.circular(25),
-        child: CachedImage(
-          imageUrl: imageUrl,
-          radius: 8,
+    return HeroMode(
+      enabled: enabledAnimation,
+      child: Hero(
+        tag: id,
+        child: PhysicalModel(
+          elevation: 10,
+          color: color,
+          borderRadius: BorderRadius.circular(25),
+          child: CachedImage(
+            imageUrl: imageUrl,
+            radius: 8,
+          ),
         ),
       ),
     );
