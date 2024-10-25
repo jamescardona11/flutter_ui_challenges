@@ -1,16 +1,10 @@
-# movies_app
+# Plants UI Concept - Flutter
 
-A new Flutter project.
+## PROJECT Movies App
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a part of the ui-challenges in my [Github](https://github.com/jamescardona11). </br>Personal project to learn more about flutter exploring different widgets and multiples UI/UX.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Preview
+<img src="preview.gif" />
