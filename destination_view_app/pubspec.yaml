@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  im_stepper: ^0.1.3
+  im_stepper: ^1.0.1+1
 
 dev_dependencies:
   flutter_test:
