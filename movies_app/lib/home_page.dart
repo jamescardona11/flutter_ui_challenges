@@ -55,11 +55,34 @@ class MoviesGridViewWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MovieDetailPage(id: movie.id)),
+                _createRoute(movie),
               );
             },
           ),
         );
+      },
+    );
+  }
+
+  Route _createRoute(MovieEntity movie) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => MovieDetailPage(id: movie.id),
+      reverseTransitionDuration: const Duration(milliseconds: 300),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        if (secondaryAnimation.status == AnimationStatus.reverse) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+
+          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        }
+        return child; // No animation for push
       },
     );
   }
@@ -88,7 +111,7 @@ class _GridViewItem extends StatelessWidget {
         children: [
           Hero(
             tag: movie.id.toString(),
-            transitionOnUserGestures: true,
+            transitionOnUserGestures: false,
             createRectTween: (begin, end) {
               return MaterialRectCenterArcTween(begin: begin, end: end);
             },
@@ -100,11 +123,7 @@ class _GridViewItem extends StatelessWidget {
               BuildContext toHeroContext,
             ) {
               return AnimatedBuilder(
-                animation: CurvedAnimation(
-                  parent: animation,
-                  curve: Curves.easeInOut,
-                  reverseCurve: Curves.linear,
-                ),
+                animation: animation,
                 builder: (context, child) {
                   return Transform.scale(
                     scale: 1 + (0.2 * animation.value),

@@ -42,7 +42,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           begin: 0.0,
           end: 1.0,
         ),
-        duration: const Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 500),
         builder: (context, value, child) {
           return ShaderMask(
               blendMode: BlendMode.modulate,
